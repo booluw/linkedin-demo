@@ -57,17 +57,147 @@
         and comprehensive knowledge of your course topics.
       </p>
     </section>
+    <section class="section" style="background-color: rgba(100, 149, 237,0.1);">
+      <h2 class="brief">Recommended for you</h2>
+      <p class="helperText">
+        Tutorials worth attending, as recommended by fellow Futmites.
+      </p>
+      <div class="v-flex">
+        <page-card v-for="(d, index) in dat" :key="index" :detail="d" />
+      </div>
+      <div class="footer">
+        <router-link to="/explore#recommended" class="btn btn-link">See all</router-link>
+      </div>
+    </section>
+    <section class="section">
+      <h1 class="main">Don't settle for less, do more</h1>
+      <p class="text">
+        Our mission is to help Futmites excel academically. This means helping you find effective tutorials
+        for every course and providing tutors with adequate information they need for tutorials to run effectively.
+      </p>
+    </section>
+    <section class="section" style="background-color: rgba(100, 149, 237,0.1);">
+      <h2 class="brief">Everywhere in FutMinna</h2>
+      <p class="helperText">
+        Tutorial locations across both campuses.
+      </p>
+      <div class="v-flex">
+        <small-card v-for="(location, index) in locations" :key="index" :detail="location" />
+      </div>
+      <div class="footer">
+        <router-link to="/locations" class="btn btn-link">All locations</router-link>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import Card from '@/components/helperComponents/theCard.vue'
+import SmallCard from '@/components/helperComponents/smallCard.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    HelloWorld,
+    'page-card' : Card,
+    'small-card' : SmallCard
+  },
+  data() {
+    return {
+      dat: [
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          },
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          },
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          },
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          },
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          },
+          {
+            date:'Saturday',
+            title:'CPT 311',
+            tutor:'Jayson X',
+            location:'SAAT LT',
+            attenders: 100
+          }
+        ],
+        locations: [
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+          {
+            image: '',
+            hall: 'NLH 2',
+            campus: 'Bosso'
+          },
+        ]
+    }
   }
 }
 </script>
@@ -95,12 +225,19 @@ export default {
 .section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 0 .5rem 2rem;
+  padding: 2rem 0 2rem .5rem;
 }
 .section .text {
   font-size: 1.2rem;
+  text-align: center;
+}
+.section .helperText {
+  font-size: 1.2rem;
+  padding: .05rem 0;
+}
+.section .footer {
+  display: flex;
+  justify-content: center;
 }
 @media (min-width: 1200px) {
   .i-search {
@@ -118,10 +255,11 @@ export default {
     margin: 0 0 0 4.5rem!important;
   }
   .section {
-    padding: 0 10rem 2rem;
+    padding: 2rem 2rem;
   }
   .section .text {
     font-size: 1.3rem;
+    padding: 0 10rem 2rem;
   }
 }
 </style>

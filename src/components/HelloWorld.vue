@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="jumba">
-      I really don't know what to put here.
+      Watch the Introductory video.
     </div>
   </div>
 </template>
@@ -125,7 +125,10 @@ h1 {
   .jumba {
     display: block;
     background-color: var(--mainColor);
-    color: transparent;
+    color: grey;
+    font-weight: bolder;
+    width: 50%;
+    padding: 20% 5%;
   }
 }
 </style>

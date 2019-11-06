@@ -56,36 +56,43 @@ export default {
     color: #0d51ce;
 }
 .header {
-    position: sticky;
     position: -webkit-sticky;
-    top: 0;
+    position: sticky;
+    top: 0px;
     display: flex;
     padding: 0 .5rem;
     background-color: white;
     box-shadow: var(--boxShadow);
 }
 .nav.mobile {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 0;
     left: 0;
     margin: 4rem 0 0;
     padding: .5rem .2rem;
     width: 15rem;
-    background-color: white;
+    background-color: rgb(224, 222, 222);
     box-shadow: 0 5px 10px 1px grey;
+    color: grey;
+    border-radius: 0 0 .3rem .3rem;
 }
-.nav a {
-    font-weight: bold;
-    padding: .5rem;
-    margin: .1rem 0;
-    color: var(--cta);
-    background-color: rgba(0,0,0,.5);
-    display: block;
-    transition: .2s ease-out;
+.nav a, .nav a:visited {
+    color: var(--subColor);
+    background-color: rgba(100, 149, 237,0.05);
+    font-weight: normal;
+    margin: .15rem .1rem;
+    padding: .5rem 1rem;
+    border: 1.5px solid var(--subColor);
+    border-radius: var(--borderRadius);
 }
-.nav a:hover, .nav a:visited {
+.nav a:hover {
+    background-color: var(--subColor);
     color: white;
-    background-color: rgba(0,0,0,.3);
+}
+.cta {
+    border: 1.5px solid var(--cta)!important;
 }
 .mobile {
     display: block;
@@ -113,6 +120,9 @@ export default {
 }
 @media (min-width: 1200px) {
     .header {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0px; 
         padding: .5rem 2rem;
         margin: 0;
         justify-content: space-between;
