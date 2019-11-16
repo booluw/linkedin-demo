@@ -5,7 +5,7 @@
              <div class="mobile">
                 <i class="material-icons mobile" @click="menuToggle=!menuToggle">menu</i>
             </div>
-            <router-link to="/explore">
+            <router-link to="/">
                 <img class="logo" alt="image of an ink pen with 'tutera'" src="../assets/logo.png" title="Click to go home" />
             </router-link>
             <div style="display: flex;justify-content: flex-end;" class="mobile">
@@ -13,9 +13,8 @@
             </div>
             <input type="search" class="desktop" />
             <nav class="nav desktop">
-                <router-link to="/explore">Home</router-link>
+                <router-link to="/explore">Explore</router-link>
                 <router-link to="/tutors">Tutors</router-link>
-                <router-link to="/tutorials">Tutorials</router-link>
                 <router-link to="/bnb">BnB</router-link>
                 <router-link to="/login" class="cta">Login</router-link>
             </nav>
@@ -24,9 +23,8 @@
             <h2>
                 tutera.tk
              </h2>
-            <router-link to="/explore">Home</router-link>
+            <router-link to="/explore">Explore</router-link>
             <router-link to="/tutors">Tutors</router-link>
-            <router-link to="/tutorials">Tutorials</router-link>
             <router-link to="/bnb">BnB</router-link>
         </nav>
     </div>
@@ -46,7 +44,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .material-icons.mobile {
     text-align: left;
     font-size: 2rem;
@@ -73,14 +71,14 @@ export default {
     margin: 4rem 0 0;
     padding: .5rem .2rem;
     width: 15rem;
-    background-color: rgb(224, 222, 222);
+    background-color: rgb(102, 51, 153);
     box-shadow: 0 5px 10px 1px grey;
     color: grey;
     border-radius: 0 0 .3rem .3rem;
 }
 .nav a, .nav a:visited {
     color: var(--subColor);
-    background-color: rgba(100, 149, 237,0.05);
+    background-color: rgba(100, 149, 237,0.5);
     font-weight: normal;
     margin: .15rem .1rem;
     padding: .5rem 1rem;
@@ -127,6 +125,7 @@ export default {
         margin: 0;
         justify-content: space-between;
         align-content: space-between;
+        z-index: 1;
     }
     .mobile {
         display: none!important;
@@ -158,7 +157,7 @@ export default {
     }
     input[type="search"] {
         padding: .5rem;
-        width: 40vw;
+        width: 30vw;
         border-radius: var(--borderRadius);
         outline: none;
         border: 1.5px solid var(--subColor);

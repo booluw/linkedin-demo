@@ -11,14 +11,6 @@ import Header from "@/components/theHeader.vue";
 export default {
   components: {
     'page-header' : Header
-  },
-  data () {
-    return {
-
-    }
-  },
-  methods: {
-
   }
 }
 </script>
@@ -45,7 +37,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: rgba(225,225,225,.5);
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -56,7 +48,7 @@ img.logo {
   width: 10rem; 
   height: 3.7rem;
 }
-.v-flex {
+.h-flex {
   display: flex;
   overflow-x: auto;
   height: auto;
@@ -66,21 +58,29 @@ img.logo {
   scroll-snap-type: mandatory;
   padding: 1rem 0;
 }
-.v-flex::-webkit-scrollbar {
+.h-flex::-webkit-scrollbar {
     width: .3rem;
     height: .5rem;
 }
-.v-flex::-webkit-scrollbar-thumb {
+.h-flex::-webkit-scrollbar-thumb {
     background-color: rgba(100, 149, 237,.5);
     border-radius: 100rem;
     box-shadow: inset 0 0 5px rgba(0,0,0,.3);
     transition: .3s background-color ease-in-out;
 }
-.v-flex::-webkit-scrollbar-thumb:hover {
+.h-flex::-webkit-scrollbar-thumb:hover {
     background-color: rgba(100, 149, 237,.2);
 }
-.v-flex > * {
+.h-flex > * {
   flex-shrink: 0; 
+}
+.v-flex {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.v-flex > * {
+   width: 100%!important;
 }
 /*======================
           AddOn
@@ -116,6 +116,7 @@ h1.main:after {
 }
 .btn {
   display: block;
+  font-family: 'Montserrat','Avenir', Helvetica, Arial, sans-serif;
   padding: .5rem 1rem;
   margin: .5rem 0;
   border-radius: var(--borderRadius);
@@ -139,6 +140,10 @@ h1.main:after {
   text-shadow: 0 0 5px black;
 }
 .danger:hover {opacity: 1;}
+.badge {
+  padding: .5rem .7rem;
+  border-radius: 1rem;
+}
 .input-group {
   display: flex;
   flex-direction: column;
@@ -157,9 +162,132 @@ h1.main:after {
   box-shadow: 0 0 10px 1px var(--subColor);
   outline: none;
 }
+[section] {
+    background-color: rgba(0,0,0,0.2);
+    padding: .5rem 1rem;
+    margin: .3rem 0;
+}
+[section].b-top {
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+}
+[section].b-bottom {
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+}
+
+
+.page-2 > section {
+    background-color: rgba(100, 149, 237,0.1);
+    padding-bottom: 5rem;
+}
+.aside.big-btn {
+    padding: 1.3rem .3rem;
+    width: 3.3rem;
+    border-radius: 3rem;
+    background-color: var(--subColor);
+    border: .5rem solid rgba(100, 149, 237,0.5);
+    box-shadow: 0 0 2px 5px rgba(100, 149, 237,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.aside .badge {
+    position: absolute;
+    top: 15px;
+    margin-left: 1.5rem;
+    opacity: 1;
+    padding: .4rem .7rem;
+}
+.stag-nav {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 6rem;
+}
+.page-2 > aside {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: transparent;
+    padding: 0;
+    color: white;
+    box-sizing: border-box;
+}
+.config-nav {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 3rem;
+    background-color: rgba(100, 97, 97,.092);
+    color: var(--headerText);
+    transition: .3s ease-in-out;
+}
+.config-nav > * {
+    margin: 0 .5rem;
+}
+.config-nav:hover {
+    box-shadow: 0 0 3px 3px rgba(128, 128, 128,.3);
+}
+
+.tutorial {
+    margin: .5rem;
+    background-color: rgba(0,0,0,0.05);
+}
+.tutorial .__header {
+    color: grey;
+}
+.tutorial .__title {
+    font-size: 2.5rem;
+    padding: 2rem 0;
+    margin: 0;
+}
+.tutorial .__tutor {
+    display: flex;
+}
+.tutorial .__tutor img {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: var(borderRadius);
+}
+.__tutor div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+.emp {
+    text-shadow: 0 0 2px black;
+}
+
 @media (min-width: 1200px) {
   .btn {
     padding: .5rem 1rem;
   }
+  .v-flex > * {
+     width: calc(100% / 3.2)!important;
+  }
+  .page-2 {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+    }
+    .page-2 > section {width: 70%;padding-bottom: 2rem;box-sizing: border-box;}
+    .page-2 > aside {
+        position: fixed;
+        width: 30%;
+        background-color: rgba(102, 51, 153,.8);
+        padding: 1rem 2rem 2rem;box-sizing: border-box;
+        top: 0;
+        border-radius: none;
+        box-shadow: none;color: black;}
+    .config {display: flex;align-items:center;}
+    .config-nav {width: 6rem;
+        background-color: rgb(100, 97, 97);
+        color: white;}
+    .config > b {margin: 0 -2.5rem;z-index: -1;
+        background-color: rgba(100, 149, 237,0.3);
+        padding:1rem 1rem 1rem 3.5rem;border-radius: 3rem;}
 }
 </style>

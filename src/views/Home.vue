@@ -12,20 +12,18 @@
       <div class="input-group">
         <label for="day">Day</label>
         <select name="day" id="day">
-          <option value="Mon">Monday</option>
-          <option value="Tue">Tuesday</option>
-          <option value="Wed">Wednesday</option>
-          <option value="Thu">Thursday</option>
-          <option value="Fri">Friday</option>
-          <option value="Sat">Saturday</option>
-          <option value="Sun">Sunday</option>
+          <option value="1">Monday</option>
+          <option value="2">Tuesday</option>
+          <option value="3">Wednesday</option>
+          <option value="4">Thursday</option>
+          <option value="5">Friday</option>
+          <option value="6">Saturday</option>
+          <option value="0">Sunday</option>
         </select>
       </div>
       <div class="input-group">
         <label for="level">Level</label>
-        <select name="day" id="day">
-          <option value="PD">Pre Degree</option>
-          <option value="IJMB">IJMB</option>
+        <select name="level" id="level">
           <option value="100">100</option>
           <option value="200">200</option>
           <option value="300">300</option>
@@ -34,8 +32,8 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="level">Faculty</label>
-        <select name="day" id="day">
+        <label for="faculty">Faculty</label>
+        <select name="faculty" id="faculty">
           <option value="SICT">SICT</option>
           <option value="SPS">SPS</option>
           <option value="SLS">SLS</option>
@@ -62,8 +60,8 @@
       <p class="helperText">
         Tutorials worth attending, as recommended by fellow Futmites.
       </p>
-      <div class="v-flex">
-        <page-card v-for="(d, index) in dat" :key="index" :detail="d" />
+      <div class="h-flex">
+        <page-card v-for="(tutorial, index) in tutorials" :key="index" :detail="tutorial" />
       </div>
       <div class="footer">
         <router-link to="/explore#recommended" class="btn btn-link">See all</router-link>
@@ -81,7 +79,7 @@
       <p class="helperText">
         Tutorial locations across both campuses.
       </p>
-      <div class="v-flex">
+      <div class="h-flex">
         <small-card v-for="(location, index) in locations" :key="index" :detail="location" />
       </div>
       <div class="footer">
@@ -97,6 +95,8 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import Card from '@/components/helperComponents/theCard.vue'
 import SmallCard from '@/components/helperComponents/smallCard.vue'
 
+import { mapState } from 'vuex'
+
 export default {
   name: 'home',
   components: {
@@ -104,99 +104,15 @@ export default {
     'page-card' : Card,
     'small-card' : SmallCard
   },
+  computed: {
+    ...mapState([
+      'tutorials',
+      'locations'
+    ])
+  },
   data() {
     return {
-      dat: [
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          },
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          },
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          },
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          },
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          },
-          {
-            date:'Saturday',
-            title:'CPT 311',
-            tutor:'Jayson X',
-            location:'SAAT LT',
-            attenders: 100
-          }
-        ],
-        locations: [
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-          {
-            image: '',
-            hall: 'NLH 2',
-            campus: 'Bosso'
-          },
-        ]
+      
     }
   }
 }

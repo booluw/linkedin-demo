@@ -5,12 +5,12 @@
       <h1>Tutor fellow Futmites.</h1>
       <h1>All on <b class="tut">tutera</b>.</h1>
       <div class="jumbotron__bottom">
-        Find tutorials, both <b>free</b> and <b>paid</b>
-        <a href="/explore" class="btn">Explore tutorials</a>
+        Find tutorials on both campuses,
+        <router-link to="/explore" class="btn">Explore tutorials</router-link>
         <br />
         Take fellow <b>Futmites</b> on tutorials
         <br />
-        <a href="/create" class="btn btn--outline">Create tutorials</a>
+        <router-link to="/create" class="btn btn--outline">Create tutorials</router-link>
       </div>
     </div>
     <div class="jumba">
@@ -21,21 +21,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  data() {
-    return {
-
-    }
-  },
-  mounted: function() {
-    
-  },
-  methods: {
-    
-  },
-  computed: {
-    
-  }
+  name: 'HelloWorld'
 }
 </script>
 
