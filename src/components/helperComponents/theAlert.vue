@@ -1,7 +1,8 @@
 <template>
-    <div :class="`alert ${type}`">
+    <div :class="`alert ${type}`" @dblclick="easterEgg()">
         <b v-if="type=='info'">Yay!&nbsp;&nbsp;</b>
         <b v-else-if="type=='warning'">Awww!&nbsp;&nbsp;</b>
+        <b v-else-if="type=='easterEgg'">Did you know?:</b>
         <b v-else>Oops!&nbsp;&nbsp;</b>
         {{msg}}
     </div>
@@ -19,6 +20,12 @@ export default {
             type: String,
             required: false,
             default: 'info'
+        }
+    },
+    methods: {
+        easterEgg: function() {
+            this.msg = 'Jesus saves.';
+            this.type = 'easterEgg'
         }
     }
 }
@@ -46,5 +53,10 @@ export default {
     background-color: rgba(255, 166, 0, 0.103);
     color: orange;
     border-color: orange;
+}
+.easterEgg {
+    background-color: rgba(102, 51, 153,0.103);
+    color: rebeccapurple;
+    border-color: rebeccapurple;
 }
 </style>

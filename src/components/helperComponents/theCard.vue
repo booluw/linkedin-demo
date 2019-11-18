@@ -5,7 +5,7 @@
                 <span v-if="(index+1) == day.length">{{d}}</span>
                 <span v-else>{{d}} and </span>
             </span>
-            ,{{detail.time}}</div>
+            <br />{{detail.time}}</div>
         <div class="__body" @click="changePage()">
             <h2 class="__title">{{detail.title}}</h2>
             <div class="__author">@{{detail.tutor}}</div>
@@ -151,7 +151,7 @@ export default {
     flex-direction: column;
     border: 1px solid rgba(100, 149, 237,.2);
     border-radius: var(--borderRadius);
-    margin: .15rem .2rem;
+    margin: .3rem .2rem;
     padding: 0;
     width: 80%;
     background-color: rgba(100, 149, 237,.1);

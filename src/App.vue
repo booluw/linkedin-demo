@@ -139,7 +139,14 @@ h1.main:after {
   transition: .3s ease-in-out;
   text-shadow: 0 0 5px black;
 }
-.danger:hover {opacity: 1;}
+.success {
+  background-color: forestgreen;
+  color: white;
+  opacity: .8;
+  transition: .3s ease-in-out;
+  text-shadow: 0 0 5px black;
+}
+.danger:hover, .success:hover {opacity: 1;}
 .badge {
   padding: .5rem .7rem;
   border-radius: 1rem;

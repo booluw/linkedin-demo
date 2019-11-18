@@ -21,20 +21,25 @@
                 </div>
             </div>
             <div class="tutorial" section>
-                <b>Detail:</b><br />
-                <p v-html="tutorial.description"></p>
-            </div>
-            <div class="tutorial" section>
-                <i class="material-icons">whatshot</i> <!-- Change this icon to a 'calender'like icon,material-icon's calender has issues --> 
-                [&nbsp;<span v-for="(d, index) in day" :key="index" class="emp">
-                    <span v-if="(index+1) == day.length">{{d}}</span>
-                    <span v-else>{{d}} and </span>
-                </span>&nbsp;]
-                <span class="emp">{{tutorial.time}}</span>
-                <a href="#" style="padding: 0 .5rem;font-size: .8rem;" prevent>Add to Calender</a>
-                <br /><br />
+                <div style="display:flex;">
+                    <i class="material-icons">whatshot</i> <!-- Change this icon to a 'calender'like icon,material-icon's calender has issues --> 
+                    <div style="padding: 0;">
+                        [&nbsp;<span v-for="(d, index) in day" :key="index" class="emp">
+                            <span v-if="(index+1) == day.length">{{d}}</span>
+                            <span v-else>{{d}} and </span>
+                        </span>&nbsp;]
+                        <br />
+                        <span class="emp">{{tutorial.time}}</span>
+                        <a href="#" style="padding: 0 .5rem;font-size: .8rem;" prevent>Add to Calender</a>
+                    </div>
+                </div>
+                <br />
                 <i class="material-icons">location_on</i><router-link :to="{path: `/locations/${tutorial.location}`}" target="_blank" :title="`Click to view ${tutorial.location}`" class="emp">{{tutorial.location}}</router-link>
                 <a href="//maps.google.com" style="padding: 0 .5rem;font-size: .8rem;" prevent>View on Maps</a>
+            </div>
+            <div class="tutorial" section>
+                <b>Detail:</b><br />
+                <p v-html="tutorial.description"></p>
             </div>
             <img src="//" :alt="`Image of ${tutorial.location}`" class="tutorial" section />
             <div class="tutorial b-bottom" section>
@@ -51,12 +56,22 @@
         </section>
         <aside>
             <div class="mobile stag-nav">
-                <div v-if="!isSelected">
-                    <button class="btn danger">Attend</button>
+                <div v-if="isSelected==true">
+                    <button class="btn danger" @click="remove_tutorial()">Cancel Attend</button>
+                </div>
+                <div v-if="isSelected==false">
+                    <button class="btn success" @click="add_tutorial()">Attend</button>
                 </div>
             </div>
             <div class="desktop">
-                Hello World
+                <div class="d-stag">
+                    <div v-if="isSelected==true">
+                    <button class="btn danger" @click="remove_tutorial()">Cancel Attend</button>
+                </div>
+                <div v-if="isSelected==false">
+                    <button class="btn success" @click="add_tutorial()">Attend</button>
+                </div>
+                </div>
             </div>
         </aside>
     </div>
@@ -66,7 +81,7 @@
 import Alert from '@/components/helperComponents/theAlert.vue'
 import Card from '@/components/helperComponents/theCard.vue'
 
-import { mapState } from 'vuex'
+import { mapState, mapMutations, mapActions } from "vuex"
 
 export default {
     name: 'Tutorialpage',
@@ -103,6 +118,13 @@ export default {
         '$route': 'fetchData'
     },
     methods: {
+        ...mapMutations ([
+            'ADD_TUTORIAL',
+            'REMOVE_TUTORIAL'
+        ]),
+        ...mapActions ([
+            'removeTutorial'
+        ]),
         fetchData: function() {
             this.tutorial = this.tutorials.find(i => (i.title == this.$route.params.title && i.tutor==this.$route.params.tutor));
             if (this.selected.some(select => (select.title==this.tutorial.title && select.tutor==this.tutorial.tutor))) {
@@ -136,10 +158,52 @@ export default {
                 }
             }
             this.tutor = this.tutors.find(i => (i.name == this.$route.params.tutor));            
+        },
+        add_tutorial: function() {
+            this.ADD_TUTORIAL(this.tutorial);
+            this.isSelected = true;
+            console.log(this.isSelected)
+        },
+        remove_tutorial: function() {
+            this.removeTutorial(this.tutorial)
+            this.isSelected = false
+            console.log(this.isSelected)
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
+.stag-nav {
+    justify-content: flex-end;height: auto;
+    padding: .5rem;
+    background-color: white;
+    box-shadow: var(--boxShadow);
+}
+.btn {
+    border: none;
+    padding: 1rem 2rem;
+}
+.d-stag {
+    position: fixed;
+    bottom: 0;
+    right: 2.5rem;
+    display:flex;
+    justify-content: flex-end;
+}
+.d-stag .btn.danger {
+    padding: 3rem .5rem;
+    opacity: 1;
+    border-radius: 10rem;
+    outline: none;
+}
+.d-stag .btn.success {
+    padding: 3rem 2rem;
+    opacity: 1;
+    border-radius: 10rem;
+    outline: none;
+}
+.d-stag .btn:hover {
+    box-shadow: var(--boxShadow);
+}
 </style>
