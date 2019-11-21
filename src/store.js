@@ -209,6 +209,9 @@ export default new Vuex.Store({
   getters: {
     selectedTotal: state => {
       return state.selected.length;
-    }
+    }/*,
+    tutorDetails: (state, tutorName) => {
+      return (state.tutors.name == tutorName);
+    }*/
   }
 })

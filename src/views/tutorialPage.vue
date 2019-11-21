@@ -1,5 +1,5 @@
 <template>
-    <div class="page page-2">
+    <div class="page">
         <section class="section">
             <page-alert msg="You are attending this tutorial" v-if="isSelected"/>
             <div class="b-top tutorial" section>
@@ -54,26 +54,24 @@
                 </div>
             </div>
         </section>
-        <aside>
-            <div class="mobile stag-nav">
-                <div v-if="isSelected==true">
-                    <button class="btn danger" @click="remove_tutorial()">Cancel Attend</button>
-                </div>
-                <div v-if="isSelected==false">
-                    <button class="btn success" @click="add_tutorial()">Attend</button>
-                </div>
+        <section class="section">
+            <div section>
+                Lorem, ipsum dolor sit amet 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
             </div>
-            <div class="desktop">
-                <div class="d-stag">
-                    <div v-if="isSelected==true">
-                    <button class="btn danger" @click="remove_tutorial()">Cancel Attend</button>
-                </div>
-                <div v-if="isSelected==false">
-                    <button class="btn success" @click="add_tutorial()">Attend</button>
-                </div>
-                </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
             </div>
-        </aside>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+        </section>
     </div>
 </template>
 
@@ -96,9 +94,6 @@ export default {
             'tutors'
         ])
     },
-    mounted() {
-        this.date;
-    },
     data() {
         return {
             /*tutorial(Object): content of this tutorial, based on the router.params
@@ -113,6 +108,7 @@ export default {
     },
     created() {
         this.fetchData();
+        console.log(this.$route);
     },
     watch: {
         '$route': 'fetchData'

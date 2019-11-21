@@ -1,8 +1,8 @@
 <template>
-    <div class="page page-2">
+    <div class="page">
         <section class="section">
-            <div class="config mobile">
-                <router-link to="/" class="config-nav">
+            <div class="mobile">
+                <router-link to="/" class="btn-nav">
                     <i class="material-icons">home</i>
                     Home
                 </router-link>
@@ -21,26 +21,11 @@
                 <page-card v-for="(tutorial, index) in tutorials" :key="index" :detail="tutorial"></page-card>
             </div>
         </section>
-        <aside>
-            <div class="config desktop">
-                <router-link to="/" class="config-nav">
-                    <i class="material-icons">home</i>
-                    Home
-                </router-link>
-                <b>Explore</b>
+        <section class="section">
+            <div section>
+                Hello
             </div>
-            <div class="desktop" style="padding: 2rem 0 0;">
-                <Dashboard />
-            </div>
-            <transition class="mobile" enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
-                <div class="h-flex mobile stag-nav" v-if="selectedTotal">
-                    <router-link to="/profile?dashboard" class="aside big-btn">
-                        <i class="material-icons">star_outline</i>
-                        <div class="badge danger">{{selectedTotal}}</div>
-                    </router-link>
-                </div>
-            </transition>
-        </aside>
+        </section>
     </div>
 </template>
 
@@ -66,11 +51,6 @@ export default {
         ...mapGetters ([
             'selectedTotal'
         ])
-    },
-    data() {
-        return {
-
-        }
-    }    
+    }
 }
 </script>

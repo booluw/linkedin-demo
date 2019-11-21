@@ -5,7 +5,7 @@
              <div class="mobile">
                 <i class="material-icons mobile" @click="menuToggle=!menuToggle">menu</i>
             </div>
-            <router-link to="/">
+            <router-link to="/" class="logo">
                 <img class="logo" alt="image of an ink pen with 'tutera'" src="../assets/logo.png" title="Click to go home" />
             </router-link>
             <div style="display: flex;justify-content: flex-end;" class="mobile">
@@ -84,10 +84,11 @@ export default {
     padding: .5rem 1rem;
     border: 1.5px solid var(--subColor);
     border-radius: var(--borderRadius);
+    transition: .3s ease-in-out;
 }
-.nav a:hover {
+.nav a:hover, .header .router-link-active:not(.logo) {
     background-color: var(--subColor);
-    color: white;
+    color: white!important;
 }
 .cta {
     border: 1.5px solid var(--cta)!important;

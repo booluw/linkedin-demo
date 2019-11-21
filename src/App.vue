@@ -1,17 +1,40 @@
 <template>
   <div id="app">
     <page-header />
-    <router-view/>
+    <transition enter-active-class="animated fadeIn slower" leave-active-class="animated fadeOut faster">
+      <router-view></router-view>
+    </transition>
+    <transition class="mobile" enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
+        <div class="h-flex mobile fab-container" v-if="selectedTotal">
+            <a href="#" @click.prevent="$router.go(-1)" class="fab small faint">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            <router-link to="/profile?dashboard" class="fab">
+                <i class="material-icons">star_outline</i>
+                <div class="badge danger">{{selectedTotal}}</div>
+            </router-link>
+            <a href="#" @click.prevent="$router.go(1)" class="fab small faint">
+                <i class="material-icons">arrow_forward</i>
+            </a>
+        </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import Header from "@/components/theHeader.vue";
 
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     'page-header' : Header
-  }
+  },
+  computed: {
+      ...mapGetters ([
+          'selectedTotal'
+      ])
+    }
 }
 </script>
 
@@ -47,6 +70,9 @@ a {
 img.logo {
   width: 10rem; 
   height: 3.7rem;
+}
+.page > *:last-child {
+  visibility: none;
 }
 .h-flex {
   display: flex;
@@ -170,7 +196,7 @@ h1.main:after {
   outline: none;
 }
 [section] {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(100, 149, 237,.1);
     padding: .5rem 1rem;
     margin: .3rem 0;
 }
@@ -181,12 +207,7 @@ h1.main:after {
     border-radius: 0 0 var(--borderRadius) var(--borderRadius);
 }
 
-
-.page-2 > section {
-    background-color: rgba(100, 149, 237,0.1);
-    padding-bottom: 5rem;
-}
-.aside.big-btn {
+.fab {
     padding: 1.3rem .3rem;
     width: 3.3rem;
     border-radius: 3rem;
@@ -197,50 +218,52 @@ h1.main:after {
     justify-content: center;
     align-items: center;
     color: white;
+    outline: none;
 }
-.aside .badge {
+.fab.small {
+  width: 2.2rem;
+  padding: .5rem .15rem;
+  box-shadow: none;
+}
+.fab.faint {
+  background-color: grey;
+  border: grey;
+}
+.fab .badge {
     position: absolute;
     top: 15px;
     margin-left: 1.5rem;
     opacity: 1;
     padding: .4rem .7rem;
 }
-.stag-nav {
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 6rem;
+.fab-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 4rem;
+  overflow: hidden;
 }
-.page-2 > aside {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: transparent;
-    padding: 0;
-    color: white;
-    box-sizing: border-box;
-}
-.config-nav {
+.btn-nav {
     display: flex;
     align-items: center;
     padding: 1rem;
     border-radius: 3rem;
+    margin: 0 .5rem 0 0;
     background-color: rgba(100, 97, 97,.092);
     color: var(--headerText);
     transition: .3s ease-in-out;
 }
-.config-nav > * {
+.btn-nav > * {
     margin: 0 .5rem;
 }
-.config-nav:hover {
-    box-shadow: 0 0 3px 3px rgba(128, 128, 128,.3);
-}
-
 .tutorial {
     margin: .5rem;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(100, 149, 237,.1);
 }
 .tutorial .__header {
     color: grey;
@@ -275,26 +298,16 @@ h1.main:after {
   .v-flex > * {
      width: calc(100% / 3.2)!important;
   }
-  .page-2 {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row-reverse;
-    }
-    .page-2 > section {width: 70%;padding-bottom: 2rem;box-sizing: border-box;}
-    .page-2 > aside {
-        position: fixed;
-        width: 30%;
-        background-color: rgba(102, 51, 153,.8);
-        padding: 1rem 2rem 2rem;box-sizing: border-box;
-        top: 0;
-        border-radius: none;
-        box-shadow: none;color: black;}
-    .config {display: flex;align-items:center;}
-    .config-nav {width: 6rem;
-        background-color: rgb(100, 97, 97);
-        color: white;}
-    .config > b {margin: 0 -2.5rem;z-index: -1;
-        background-color: rgba(100, 149, 237,0.3);
-        padding:1rem 1rem 1rem 3.5rem;border-radius: 3rem;}
+  .page {
+    display: flex;
+    justify-content: space-between;
+  }
+  .page >*:first-child {
+      width: 63%;
+  }
+  .page > *:last-child {
+      width: 27%;
+      visibility: visible;
+  }
 }
 </style>

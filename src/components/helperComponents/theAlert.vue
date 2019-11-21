@@ -1,10 +1,10 @@
 <template>
-    <div :class="`alert ${type}`" @dblclick="easterEgg()">
-        <b v-if="type=='info'">Yay!&nbsp;&nbsp;</b>
-        <b v-else-if="type=='warning'">Awww!&nbsp;&nbsp;</b>
-        <b v-else-if="type=='easterEgg'">Did you know?:</b>
+    <div :class="`alert ${$data._type}`" @dblclick="easterEgg()">
+        <b v-if="$data._type=='info'">Yay!&nbsp;&nbsp;</b>
+        <b v-else-if="$data._type=='warning'">Awww!&nbsp;&nbsp;</b>
+        <b v-else-if="$data._type=='easterEgg'">Did you know?:</b>
         <b v-else>Oops!&nbsp;&nbsp;</b>
-        {{msg}}
+        {{$data._msg}}
     </div>
 </template>
 
@@ -22,10 +22,16 @@ export default {
             default: 'info'
         }
     },
+    data() {
+        return {
+            _msg: this.$props.msg,
+            _type: this.$props.type
+        }
+    },
     methods: {
         easterEgg: function() {
-            this.msg = 'Jesus saves.';
-            this.type = 'easterEgg'
+            this.$data._msg = "That you can earn while on tutera, Checkout B'n'B";
+            this.$data._type = 'easterEgg'
         }
     }
 }
