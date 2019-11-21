@@ -179,7 +179,7 @@ __btn: A special type of button,
 ===========*/
 .__btn {
     background-color: transparent;
-    padding: 1rem 1.8rem;
+    padding: .5rem .9rem;
     color: var(--mainColor);
     font-weight: bold;
     border: 1.5px solid var(--mainColor);
@@ -221,7 +221,7 @@ __btn: A special type of button,
 .input-group {
   display: flex;
   flex-direction: column;
-  color: rgba(0,0,0,.6);
+  color: var(--cta);
 }
 .input-group input, .input-group select {
   padding: .5rem;
@@ -302,46 +302,15 @@ __btn: A special type of button,
 .btn-nav > * {
     margin: 0 .5rem;
 }
-.tutorial {
-    margin: .5rem;
-    background-color: rgba(100, 149, 237,.1);
-}
-.tutorial .__header {
-    color: grey;
-}
-.tutorial .__title {
-    font-size: 2.5rem;
-    padding: 2rem 0;
-    margin: 0;
-}
-.tutorial .__tutor {
-    display: flex;
-    position: relative;
-}
-.tutorial .__tutor img {
-    width: 3rem;
-    height: 3rem;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: var(borderRadius);
-}
-.__tutor div {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-    position: relative;
-}
-.__tutor .__btn {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
 .emp {
     text-shadow: 0 0 2px black;
 }
-
 @media (min-width: 1200px) {
   .btn {
     padding: .5rem 1rem;
+  }
+  .__btn {
+    padding: 1rem 1.8rem;
   }
   .v-flex > * {
      width: calc(100% / 3.2)!important;
@@ -356,6 +325,24 @@ __btn: A special type of button,
   .page > *:last-child {
       width: 27%;
       visibility: visible;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mainColor: #a36cd6;
+    --subColor: #243b66;
+    --cta: #ffa500;
+    --text: #504b4b;
+    --headerText: #8f8e8e;
+    --borderRadius: .3rem;
+    --boxShadow: 0 0 5px 3px grey;
+  }
+  body {
+    background-color: rgb(39, 39, 39);
+    color: rgb(110, 105, 105);
+  }
+  * {
+    text-shadow: none!important;
   }
 }
 </style>

@@ -17,7 +17,7 @@
                 <div class="__tutor">
                     <img src="" :alt="`${tutor.name}`"/>
                     <div>
-                        <b class="emp"><router-link :to="`/u/${tutor.name}`" :title="`View ${tutor.name}'s profile.`">{{tutor.name}}</router-link></b>
+                        <b class="emp"><router-link :to="`/u/${tutor.name}`" :title="`View ${tutor.name}'s profile.`" class="__link">{{tutor.name}}</router-link></b>
                         {{tutor.dept}},{{tutor.level}}
                     </div>
                     <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
@@ -188,3 +188,41 @@ export default {
     }
 }
 </script>
+<style scoped>
+.tutorial {
+    margin: .5rem;
+    background-color: rgba(100, 149, 237,.1);
+}
+.tutorial .__header {
+    color: grey;
+}
+.tutorial .__title {
+    font-size: 2.5rem;
+    padding: 2rem 0;
+    margin: 0;
+}
+.tutorial .__tutor {
+    display: flex;
+    position: relative;
+}
+.tutorial .__tutor img {
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: var(borderRadius);
+}
+.__tutor div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    position: relative;
+}
+.__tutor .__btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.__link {
+    color: var(--cta);
+}
+</style>

@@ -42,10 +42,10 @@ export default new Router({
       component: Create
     },
     {
-      path: '/tutors',
+      path: '/u',
       name: 'tutors',
       component: Tutors,
-      alias: '/u'
+      alias: '/tutors'
     },
     {
       path: '/u/:tutor',

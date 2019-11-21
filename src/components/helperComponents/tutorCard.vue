@@ -1,31 +1,30 @@
 <template>
-    <router-link :to="{path: `/locations/${detail.hall}`}" class="small card" :title="`View all tutorials holding at ${detail.hall}`">
+    <router-link :to="{path: `/u/${detail.name}`}" class="small card" :title="`Checkout ${detail.name}'s profile on Tutera`">
         <div class="__image" style="background-image: url('')"></div>
         <div class="__footer">
-            <div class="__hall">{{detail.hall}}</div>
-            <div class="__campus">{{detail.campus}}</div>
+            <div class="__hall">{{detail.name}}</div>
+            <div class="__campus">{{detail.dept}},{{detail.level}}</div>
         </div>
     </router-link>
 </template>
 
 <script>
 export default {
-    name: 'SmallCard',
+    name: 'tutorCard',
     props: {
         detail: {
-            type: Object,
-            reqiured: true
+            required: true
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 .small.card {
-    width: 45%;
-    margin: 0 .2rem;
+    width: 45%!important;
+    margin: .5rem .2rem;
     padding: 0;
-    color: var(--headerText);
+    color: var(--text);
     background-color: rgba(100, 149, 237,.1);
     border-radius: var(--borderRadius);
     border: 1px solid rgba(100, 149, 237,.2);
@@ -52,7 +51,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .small.card {
-        width: 20%;
+        width: 30%!important;
     }
 }
 </style>

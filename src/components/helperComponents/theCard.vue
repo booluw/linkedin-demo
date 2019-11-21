@@ -14,7 +14,6 @@
                 {{detail.location}}
             </div>
         </div>
-        <hr />
         <div class="__footer">
             <div class="__attendees" v-if="showRating=='No'">
                 <i class="material-icons" v-if='commentBtn=="Yes"'>account_box</i>

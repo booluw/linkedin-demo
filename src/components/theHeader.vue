@@ -2,9 +2,10 @@
     <div>
          <input type="checkbox" name="menu-toggle" v-model="menuToggle"/>
          <header class="header">
-             <div class="mobile">
-                <i class="material-icons mobile" @click="menuToggle=!menuToggle">menu</i>
-            </div>
+             <transition-group tag="div" class="mobile" enter-active-class="animated fadeIn slower" leave-active-class="animated fadeOut faster">
+                <i class="material-icons mobile" @click="menuToggle=true" v-if="!menuToggle" key="hamburger">menu</i>
+                <i class="material-icons mobile" @click="menuToggle=false" v-if="menuToggle" key="cancel">clear</i>
+             </transition-group>
             <router-link to="/" class="logo">
                 <img class="logo" alt="image of an ink pen with 'tutera'" src="../assets/logo.png" title="Click to go home" />
             </router-link>
@@ -14,19 +15,21 @@
             <input type="search" class="desktop" />
             <nav class="nav desktop">
                 <router-link to="/explore">Explore</router-link>
-                <router-link to="/tutors">Tutors</router-link>
+                <router-link to="/u">Tutors</router-link>
                 <router-link to="/bnb">BnB</router-link>
                 <router-link to="/login" class="cta">Login</router-link>
             </nav>
          </header>
-         <nav class="nav mobile" v-if="menuToggle">
-            <h2>
-                tutera.tk
-             </h2>
-            <router-link to="/explore">Explore</router-link>
-            <router-link to="/tutors">Tutors</router-link>
-            <router-link to="/bnb">BnB</router-link>
-        </nav>
+         <transition class="mobile" enter-active-class="animated slideInUp faster" leave-active-class="animated slideOutDown faster">
+            <nav class="nav mobile" v-if="menuToggle">
+                <h2>
+                    tutera.tk
+                </h2>
+                <router-link to="/explore">Explore</router-link>
+                <router-link to="/u">Tutors</router-link>
+                <router-link to="/bnb">BnB</router-link>
+            </nav>
+        </transition>
     </div>
 </template>
 
@@ -67,14 +70,16 @@ export default {
     flex-direction: column;
     position: absolute;
     top: 0;
+    bottom: 0;
     left: 0;
+    right: 0;
     margin: 4rem 0 0;
     padding: .5rem .2rem;
-    width: 15rem;
     background-color: rgb(102, 51, 153);
     box-shadow: 0 5px 10px 1px grey;
     color: grey;
     border-radius: 0 0 .3rem .3rem;
+    z-index: 3;
 }
 .nav a, .nav a:visited {
     color: var(--subColor);
