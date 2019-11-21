@@ -123,7 +123,7 @@ export default {
         ]),
         changePage: function() {
             console.log('ChangePage here');
-            this.$router.push({name: 'tutorialPage',params: {tutor: `${this.detail.tutor}`, title: `${this.detail.title}`}});
+            this.$router.push({name: 'tutorialPage',params: {title: `${this.detail.title}`}});
         },
         checker: function() {
             //Checks if this tutorial is selected
@@ -194,32 +194,6 @@ export default {
     align-items: center;
     padding: 1rem .5rem;
     border-top: 1px solid rgba(100, 149, 237,.2);
-}
-.__btn {
-    background-color: transparent;
-    padding: 1rem 1.8rem;
-    color: var(--mainColor);
-    font-weight: bold;
-    border: 1.5px solid var(--mainColor);
-    border-radius: 3rem;
-    transition: .3s ease-in;
-    cursor: pointer;
-    outline: none;
-}
-.__btn:hover {
-    border-color: var(--mainColor);
-    background-color: var(--mainColor);
-    color: white;
-}
-.__btn.selected {
-    background-color: #06b406;
-    color: white;
-    border-color: #06b406;
-    opacity: .6;
-    transition: .3s ease-in-out;
-}
-.__btn.selected:hover {
-    opacity: 1;
 }
 @media (min-width: 1200px) {
     .card {

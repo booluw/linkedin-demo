@@ -1,7 +1,9 @@
 <template>
     <div class="page">
         <section class="section">
-            <page-alert msg="You are attending this tutorial" v-if="isSelected"/>
+            <transition enter-active-class="animated slideInDown faster" leave-active-class="animated slideOutUp faster">
+                <page-alert msg="You are attending this tutorial" v-if="isSelected"/>
+            </transition>
             <div class="b-top tutorial" section>
                 <span class="__header">
                     <span v-for="(d, index) in day" :key="index">
@@ -18,16 +20,18 @@
                         <b class="emp"><router-link :to="`/u/${tutor.name}`" :title="`View ${tutor.name}'s profile.`">{{tutor.name}}</router-link></b>
                         {{tutor.dept}},{{tutor.level}}
                     </div>
+                    <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
+                    <button class="__btn danger" @click="remove_tutorial()" v-if="isSelected">Cancel Attend</button>
                 </div>
             </div>
             <div class="tutorial" section>
                 <div style="display:flex;">
                     <i class="material-icons">whatshot</i> <!-- Change this icon to a 'calender'like icon,material-icon's calender has issues --> 
                     <div style="padding: 0;">
-                        [&nbsp;<span v-for="(d, index) in day" :key="index" class="emp">
+                        &nbsp;<span v-for="(d, index) in day" :key="index" class="emp">
                             <span v-if="(index+1) == day.length">{{d}}</span>
                             <span v-else>{{d}} and </span>
-                        </span>&nbsp;]
+                        </span>&nbsp;
                         <br />
                         <span class="emp">{{tutorial.time}}</span>
                         <a href="#" style="padding: 0 .5rem;font-size: .8rem;" prevent>Add to Calender</a>
@@ -70,6 +74,22 @@
             </div>
             <div section>
                 Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+            </div>
+            <div section>
+                Lorem, ipsum dolor sit amet 
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
             </div>
         </section>
     </div>
@@ -122,8 +142,9 @@ export default {
             'removeTutorial'
         ]),
         fetchData: function() {
-            this.tutorial = this.tutorials.find(i => (i.title == this.$route.params.title && i.tutor==this.$route.params.tutor));
-            if (this.selected.some(select => (select.title==this.tutorial.title && select.tutor==this.tutorial.tutor))) {
+            this.tutorial = this.tutorials.find(i => (i.title == this.$route.params.title));
+            this.tutor = this.tutors.find(i => (i.name ==this.tutorial.tutor));
+            if (this.selected.some(select => (select.title==this.tutorial.title))) {
                 this.isSelected = true;
             } else {
                 this.isSelected = false
@@ -152,8 +173,7 @@ export default {
                     this.day.push('Saturdays');
                     break;
                 }
-            }
-            this.tutor = this.tutors.find(i => (i.name == this.$route.params.tutor));            
+            }           
         },
         add_tutorial: function() {
             this.ADD_TUTORIAL(this.tutorial);
@@ -168,38 +188,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.stag-nav {
-    justify-content: flex-end;height: auto;
-    padding: .5rem;
-    background-color: white;
-    box-shadow: var(--boxShadow);
-}
-.btn {
-    border: none;
-    padding: 1rem 2rem;
-}
-.d-stag {
-    position: fixed;
-    bottom: 0;
-    right: 2.5rem;
-    display:flex;
-    justify-content: flex-end;
-}
-.d-stag .btn.danger {
-    padding: 3rem .5rem;
-    opacity: 1;
-    border-radius: 10rem;
-    outline: none;
-}
-.d-stag .btn.success {
-    padding: 3rem 2rem;
-    opacity: 1;
-    border-radius: 10rem;
-    outline: none;
-}
-.d-stag .btn:hover {
-    box-shadow: var(--boxShadow);
-}
-</style>

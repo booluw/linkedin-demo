@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Create from './views/Explore.vue'
+import Tutors from './views/Tutors.vue'
 
 Vue.use(Router)
 /*
@@ -32,12 +33,19 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: Explore
+      component: Explore,
+      alias: '/tutorials'
     },
     {
       path: '/create',
       name: 'create',
       component: Create
+    },
+    {
+      path: '/tutors',
+      name: 'tutors',
+      component: Tutors,
+      alias: '/u'
     },
     {
       path: '/u/:tutor',
@@ -50,7 +58,7 @@ export default new Router({
       component: () => import('./views/tutorPage.vue')
     },
     {
-      path: '/u/:tutor/:title',
+      path: '/explore/:title',
       name: 'tutorialPage',
       component: () => import('./views/tutorialPage.vue')
     }

@@ -148,6 +148,7 @@ h1.main:after {
   border-radius: var(--borderRadius);
   cursor: pointer;
   font-weight: bolder;
+  transition: .3s ease-in-out;
 }
 .btn-link {
   color: var(--mainColor);
@@ -172,7 +173,47 @@ h1.main:after {
   transition: .3s ease-in-out;
   text-shadow: 0 0 5px black;
 }
-.danger:hover, .success:hover {opacity: 1;}
+/*===========
+__btn: A special type of button,
+      used in theCard.vue and tutorialPage.vue
+===========*/
+.__btn {
+    background-color: transparent;
+    padding: 1rem 1.8rem;
+    color: var(--mainColor);
+    font-weight: bold;
+    border: 1.5px solid var(--mainColor);
+    border-radius: 3rem;
+    transition: .3s ease-in;
+    cursor: pointer;
+    outline: none;
+}
+.__btn:hover {
+    border-color: var(--mainColor);
+    background-color: var(--mainColor);
+    color: white;
+}
+.__btn.selected {
+    background-color: #06b406;
+    color: white;
+    border-color: #06b406;
+    opacity: .6;
+    transition: .3s ease-in-out;
+}
+.__btn.selected:hover {
+    opacity: 1;
+}
+.__btn.danger {
+  border-color: crimson;
+  color: crimson;
+  text-shadow: 0 0 1px crimson;
+}
+.__btn.danger:hover {
+  background-color: crimson;
+  border-color: crimson;
+  color: white;
+}
+.__btn.danger:hover, .danger:hover, .success:hover {opacity: 1;}
 .badge {
   padding: .5rem .7rem;
   border-radius: 1rem;
@@ -275,6 +316,7 @@ h1.main:after {
 }
 .tutorial .__tutor {
     display: flex;
+    position: relative;
 }
 .tutorial .__tutor img {
     width: 3rem;
@@ -286,6 +328,12 @@ h1.main:after {
     display: flex;
     flex-direction: column;
     margin-left: 1rem;
+    position: relative;
+}
+.__tutor .__btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .emp {
     text-shadow: 0 0 2px black;
