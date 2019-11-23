@@ -4,7 +4,7 @@
             <transition enter-active-class="animated slideInDown faster" leave-active-class="animated slideOutUp faster">
                 <page-alert msg="You are attending this tutorial" v-if="isSelected"/>
             </transition>
-            <div class="b-top tutorial" section>
+            <div class="tutorial" section="b-top">
                 <span class="__header">
                     <span v-for="(d, index) in day" :key="index">
                         <span v-if="(index+1) == day.length">{{d}}</span>
@@ -20,8 +20,8 @@
                         <b class="emp"><router-link :to="`/u/${tutor.name}`" :title="`View ${tutor.name}'s profile.`" class="__link">{{tutor.name}}</router-link></b>
                         {{tutor.dept}},{{tutor.level}}
                     </div>
-                    <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
-                    <button class="__btn danger" @click="remove_tutorial()" v-if="isSelected">Cancel Attend</button>
+                    <button class="__btn primary" @click="add_tutorial()" v-if="!isSelected">Attend</button>
+                    <button class="__btn is-dangerous primary" @click="remove_tutorial()" v-if="isSelected">Cancel Attend</button>
                 </div>
             </div>
             <div class="tutorial" section>
@@ -46,7 +46,7 @@
                 <p v-html="tutorial.description"></p>
             </div>
             <img src="//" :alt="`Image of ${tutorial.location}`" class="tutorial" section />
-            <div class="tutorial b-bottom" section>
+            <div class="tutorial" section="b-bottom">
                 <b>Attendees</b>&nbsp;&nbsp;&nbsp;[{{tutorial.attenders.length}}]
                 <div class="h-flex">
                     <router-link :to="{path: `/u/${persons}`}" class="small card" v-for="(persons, index) in tutorial.attenders" :key="index">
@@ -221,6 +221,10 @@ export default {
   position: absolute;
   right: 0;
   bottom: 0;
+  opacity: .6;
+}
+.__tutor .__btn:hover {
+    opacity: 1;
 }
 .__link {
     color: var(--cta);

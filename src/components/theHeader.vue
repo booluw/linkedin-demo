@@ -41,8 +41,13 @@ export default {
             menuToggle : false
         }
     },
+    watch: {
+        '$route' : 'menutoggle'
+    },
     methods: {
-
+        menutoggle: function() {
+            this.menuToggle = false;
+        }
     }
 }
 </script>
@@ -82,12 +87,12 @@ export default {
     z-index: 3;
 }
 .nav a, .nav a:visited {
-    color: var(--subColor);
-    background-color: rgba(100, 149, 237,0.5);
+    color: var(--cta);
+    background-color: rgba(0, 0, 0, 0.322);
     font-weight: normal;
     margin: .15rem .1rem;
     padding: .5rem 1rem;
-    border: 1.5px solid var(--subColor);
+    border: 1.5px solid rgba(0, 0, 0, 0.322);
     border-radius: var(--borderRadius);
     transition: .3s ease-in-out;
 }

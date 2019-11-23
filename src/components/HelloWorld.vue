@@ -1,16 +1,16 @@
 <template>
-  <div class="main">
+  <div class="container">
     <div class="jumbotron">
       <h1>Attend tutorials.</h1>
-      <h1>Tutor fellow Futmites.</h1>
+      <h1>Tutor fellow FUTMites.</h1>
       <h1>All on <b class="tut">tutera</b>.</h1>
       <div class="jumbotron__bottom">
-        Find tutorials on both campuses,
+        Find tutorials happening on both campuses,
         <router-link to="/explore" class="btn">Explore tutorials</router-link>
         <br />
-        Take fellow <b>Futmites</b> on tutorials
+        Take fellow <b>FUTMites</b> on tutorials,
         <br />
-        <router-link to="/create" class="btn btn--outline">Create tutorials</router-link>
+        <router-link to="/create" class="btn is-outlined">Create tutorials</router-link>
       </div>
     </div>
     <div class="jumba">
@@ -27,7 +27,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.main {
+.container {
   display: flex;
 }
 .jumbotron {
@@ -65,16 +65,16 @@ h1 {
   border: 3px solid white;
   text-align: center;
 }
-.btn--outline {
-  border: 3px solid white;
-  background-color: transparent;
-  color: white!important;
-}
-.btn--outline:hover {
-  border-color: white;
-  background-color: white;
-  color: var(--mainColor)!important;
-}
+  .btn.is-outlined {
+    border: 3px solid white;
+    background-color: transparent;
+    color: white!important;
+  }
+    .btn.is-outlined:hover {
+      border-color: white;
+      background-color: white;
+      color: var(--mainColor)!important;
+    }
 .tut {
   text-shadow: 0 0 3px black;
 }
@@ -92,7 +92,9 @@ h1 {
 }
 @media (min-width: 1200px) {
   .jumbotron {
-    padding: 5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2.5rem;
     height: 85vh;
   }
   .jumbotron__bottom {

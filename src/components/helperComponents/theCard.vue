@@ -25,7 +25,7 @@
                 {{review}}
             </div>
             <div v-if='commentBtn=="Yes"'>
-                <button class="__btn selected" @click="remove_tutorial()" v-if="isSelected">You're Attending</button>
+                <button class="__btn is-selected" @click="remove_tutorial()" v-if="isSelected">You're Attending</button>
                 <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
             </div>
             <router-link :to="'/'+this.detail.tutor+'/'+this.detail.title" v-else>
@@ -33,9 +33,6 @@
                 22
             </router-link>
         </div>
-        <!-- The below is just to call the function. I don't know what to do here, doh.-->
-        {{checker()}}
-        {{date}}
     </div>
 </template>
 <script>
@@ -58,6 +55,10 @@ export default {
             required: false,
             default: 'Yes'
         }
+    },
+    mounted() {
+        this.checker()
+        this.date
     },
     data() {
         return {
@@ -134,6 +135,7 @@ export default {
         },
         add_tutorial: function() {
             this.ADD_TUTORIAL(this.detail)
+            this.isSelected = true
         },
         remove_tutorial: function() {
             this.removeTutorial(this.detail)
@@ -153,7 +155,7 @@ export default {
     margin: .3rem .2rem;
     padding: 0;
     width: 80%;
-    background-color: rgba(100, 149, 237,.1);
+    background-color: var(--subSubtile);
     transition: .3s ease-in-out;
 }
 .card:hover {
@@ -182,7 +184,7 @@ export default {
     font-size: 1.2rem;
 }
 .__location {
-    color: rgba(0,0,0,.5);
+    color: var(--subColor);
 }
 .material-icons {
     color: rgb(151, 148, 148);

@@ -25,7 +25,7 @@ export default {
     margin: .5rem .2rem;
     padding: 0;
     color: var(--text);
-    background-color: rgba(100, 149, 237,.1);
+    background-color: var(--subSubtile);
     border-radius: var(--borderRadius);
     border: 1px solid rgba(100, 149, 237,.2);
     transition: .3s ease-in-out;

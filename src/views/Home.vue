@@ -45,7 +45,7 @@
           <option value="SET">SET</option>
         </select>
       </div>
-      <button type="submit" class="btn danger">Search</button>
+      <button type="submit" class="btn is-primary">Search Tutorials</button>
     </form>
     <section class="section">
       <h1 class="main">For students, by students</h1>
@@ -68,14 +68,14 @@
       </div>
     </section>
     <section class="section">
-      <h1 class="main">Don't settle for less, do more</h1>
+      <h1 class="main">Don't settle for less, get more</h1>
       <p class="text">
         Our mission is to help Futmites excel academically. This means helping you find effective tutorials
         for every course and providing tutors with adequate information they need for tutorials to run effectively.
       </p>
     </section>
     <section class="section" style="background-color: rgba(100, 149, 237,0.1);">
-      <h2 class="brief">Everywhere in FutMinna</h2>
+      <h2 class="brief">Everywhere in FUTMinna</h2>
       <p class="helperText">
         Tutorial locations across both campuses.
       </p>
@@ -85,6 +85,23 @@
       <div class="footer">
         <router-link to="/locations" class="btn btn-link">All locations</router-link>
       </div>
+    </section>
+    <section class="section">
+      <h1 class="main">Every information, you'll need</h1>
+      <p class="text">
+        To make life a lil bit easier for you, we provide every information concerning every tutorial listed here on <b>tutera</b>;
+        time and venue of tutorials, size of halls, availability of halls, location guide to halls and even more.
+      </p>
+    </section>
+    <section class="section" style="background-color: rgba(100, 149, 237,0.1);">
+      <h2 class="brief">Hall availability</h2>
+      <p class="helperText">
+        Is that hall availabile? Let's help you check.
+      </p>
+      <form action="/" class="hall-search">
+        <input type="text" name="hall" />
+        <button type="submit" class="btn is-primary">Check Availability</button>
+      </form>
     </section>
   </div>
 </template>
@@ -154,6 +171,31 @@ export default {
 .section .footer {
   display: flex;
   justify-content: center;
+  padding: 1rem 0 0;
+}
+.hall-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hall-search input {
+  font-size: 1rem;
+  box-sizing: border-box;
+  width: 50%;
+  padding: .7rem 1rem;
+  border-radius: .3rem;
+  outline: none;
+  border: thin solid var(--subColor);
+  transition: .3s ease-in-out;
+}
+.hall-search input:focus {
+  box-shadow: 0 0 5px 2px var(--subColor);
+}
+.hall-search button {
+  width: 30%;
+  padding: 1rem;
+  border: none;
+  margin: 1rem 0 0;
 }
 @media (min-width: 1200px) {
   .i-search {
