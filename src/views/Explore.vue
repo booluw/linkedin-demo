@@ -1,12 +1,6 @@
 <template>
     <div class="page">
         <section class="section">
-            <div class="mobile">
-                <router-link to="/" class="btn-nav">
-                    <i class="material-icons">home</i>
-                    Home
-                </router-link>
-            </div>
             <h2 class="brief" style="padding-top: 2.5rem;">Learn, anywhere in FUTMinna</h2>
             <div class="h-flex">
                 <small-card v-for="(location, index) in locations" :key="index" :detail="location" />

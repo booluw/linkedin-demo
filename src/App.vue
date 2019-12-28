@@ -4,20 +4,17 @@
     <transition enter-active-class="animated fadeIn slower" leave-active-class="animated fadeOut faster">
       <router-view></router-view>
     </transition>
-    <div class="mobile" style="padding: 3rem 0;"></div>
-    <transition class="mobile" enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
-        <div class="h-flex mobile fab-container" v-if="selectedTotal">
-            <a href="#" @click.prevent="$router.go(-1)" class="fab is-small is-faint">
-                <i class="material-icons">arrow_back</i>
-            </a>
-            <router-link to="/profile?dashboard" class="fab">
-                <i class="material-icons">star_outline</i>
-                <div class="badge is-dangerous">{{selectedTotal}}</div>
-            </router-link>
-            <a href="#" @click.prevent="$router.go(1)" class="fab is-small is-faint">
-                <i class="material-icons">arrow_forward</i>
-            </a>
+    <div style="padding: 3rem 0;"></div>
+    <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown faster">
+      <router-link to="/checkout" class="toast" v-if="selectedTotal && $route.path !='/checkout'">
+        <p>
+          {{selected[selected.length-1].title}} added
+        </p>
+        <div>
+          <i class="material-icons">star</i>
+          <b class="emp">{{selectedTotal}}</b>
         </div>
+      </router-link>
     </transition>
   </div>
 </template>
@@ -25,7 +22,7 @@
 <script>
 import Header from "@/components/theHeader.vue";
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   components: {
@@ -34,6 +31,9 @@ export default {
   computed: {
       ...mapGetters ([
           'selectedTotal'
+      ]),
+      ...mapState ([
+        'selected'
       ])
     }
 }
@@ -41,18 +41,13 @@ export default {
 
 
 <style>
-.header {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0px;
-}
 :root {
   --mainColor: #663399;
-  --mainSubtile: ;
+  --mainSubtile: rgba(102, 51, 153,.2);
   --subColor: #6495ed;
-  --subSubtile: rgba(100, 149, 237,.1);
+  --subSubtile: rgba(100, 149, 237,.2);
   --cta: #ffa500;
-  --ctaSubtile: ;
+  --ctaSubtile: rgba(255, 165, 0,.2);
   --text: #575656;
   --headerText: #363636;
   --borderRadius: .3rem;
@@ -68,16 +63,57 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.mobile {
+    display: block;
+}
+.desktop {
+    display: none;
+}
+.hidden {
+  display: none;
+}
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0px;
+}
+.page {
+  padding: 0 .5rem 0 0;
+}
 a {
   text-decoration: none;
 }
+  .subtile-link {
+    display: inline-flex;
+    justify-content:center;
+    align-content: center;
+    align-items: center;
+    padding: .7rem;
+    background-color: transparent;
+    color: var(--text);
+    font-weight: bold;
+    border-radius: var(--borderRadius);
+    transition: .3s ease-in-out;
+  }
+  .subtile-link .material-icons {margin: 0 .5rem 0 0}
+    .subtile-link.is-active, .subtile-link.is-active:hover {
+      --text: var(--subColor);
+      --background-color: rgba(100, 148, 237, 0.1);
+      background-color: var(--background-color);
+    }
+    .subtile-link.is-disabled, .subtitle-link.is-disabled:hover {
+      --text: rgb(161, 160, 160);   
+    }
+    .subtile-link:hover {
+      color: var(--text);
+      background-color: var(--background-color, rgba(128, 128, 128, 0.1));
+      box-shadow: 0 0 2px 3px var(--background-color, rgba(128, 128, 128, 0.1));
+    }
 img.logo {
   width: 10rem; 
   height: 3.7rem;
 }
-.page > *:last-child {
-  visibility: none;
-}
+
 .h-flex {
   display: flex;
   overflow-x: auto;
@@ -147,12 +183,13 @@ img.logo {
 .btn {
   display: block;
   font-family: 'Montserrat','Avenir', Helvetica, Arial, sans-serif;
-  padding: .5rem 1rem;
+  padding: 1rem;
   margin: .5rem 0;
   border-radius: var(--borderRadius);
   cursor: pointer;
   font-weight: bolder;
   transition: .3s ease-in-out;
+  border: none;
 }
   .btn.btn-link {
     color: var(--mainColor);
@@ -190,7 +227,7 @@ __btn: A special type of button,
 ===========*/
 .__btn {
     background-color: transparent;
-    padding: .5rem .9rem;
+    padding: .9rem;
     color: var(--mainColor);
     font-weight: bold;
     border: 1.5px solid var(--mainColor);
@@ -198,6 +235,10 @@ __btn: A special type of button,
     transition: .3s ease-in;
     cursor: pointer;
     outline: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
   .__btn:hover {
         border-color: var(--mainColor);
@@ -276,64 +317,66 @@ section attribute
       border-radius: 0 0 var(--borderRadius) var(--borderRadius);
   }
 /*======
-Floating Action Button [FAB]
+Toast
 ======*/
-.fab-container {
+.toast {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: transparent;
+  bottom: .5rem;
+  right: 1rem;
+  left: 1rem;
+  margin: 0 30vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  height: 4rem;
-  overflow: hidden;
+  padding: .1rem 1rem;
+  color: rgb(83, 231, 83);
+  background-color: rgb(48, 46, 46);
+  box-shadow: 0 0 2px 5px rgba(48, 46, 46, .3);
+  border-radius: var(--borderRadius);
+  transition: .2s ease-in-out;
 }
-.fab {
-    padding: 1.3rem .3rem;
-    width: 3.3rem;
-    border-radius: 3rem;
-    background-color: var(--subColor);
-    border: .5rem solid var(--subColor);
-    box-shadow: 0 0 2px 5px var(--subSubtile);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    outline: none;
+.toast:hover {
+  bottom: 1rem;
 }
-  .fab.is-small {
-    width: 2.2rem;
-    padding: .5rem .15rem;
-    box-shadow: none;
-  }
-  .fab.is-faint {
-    background-color: grey;
-    border: grey;
-  }
-  .fab .badge {
-      position: absolute;
-      top: 15px;
-      margin-left: 1.5rem;
-      opacity: 1;
-      padding: .4rem .7rem;
-  }
-.btn-nav {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 3rem;
-    margin: 0 .5rem 0 0;
-    background-color: rgba(100, 97, 97,.092);
-    color: var(--headerText);
-    transition: .3s ease-in-out;
+.toast .material-icons {
+  vertical-align: bottom;
+  font-size: 2rem;
 }
-.btn-nav > * {
-    margin: 0 .5rem;
+.toast div {
+  color: var(--subColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .emp {
-    text-shadow: 0 0 2px black;
+  text-shadow: 0 0 2px black;
+}
+.snub-header, .snub {
+  text-transform: uppercase;
+  font-size: .7rem;
+  color: rgb(163, 163, 163);
+  position: relative;
+}
+  .snub {
+    padding: 1.7rem 0 0;
+  }
+  .snub-header::after {
+    display: flex;
+    position: absolute;
+    top: .3rem;
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    content: '';
+    height: .15rem;
+    background-color: rgb(163, 163, 163);
+  }
+hr {
+  border: none;
+  padding: .05rem;
+  background-color: rgb(163, 163, 163);
+  width: 100%;
 }
 @media (min-width: 1200px) {
   .btn {
@@ -357,6 +400,180 @@ Floating Action Button [FAB]
       visibility: visible;
   }
 }
+
+.profile .__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.__img {
+    border-radius: 2rem;
+    height: 10rem;
+    width: 70%;
+    outline: none;
+    background-color: rgb(66, 75, 102);
+}
+.tabs .__tab {
+    padding: 0 0;
+    font-size: .9rem;
+}
+    .tabs .__tab .__item {
+        padding: .5rem 0;
+        display: flex;
+        justify-content: space-between;
+    }
+        .tabs .__tab .__item b {
+            text-shadow: 0 0 2px grey;
+        }
+        .tabs .__tab .__item span {
+            width: 50%;
+            text-align: left;
+            text-shadow: 0 0 1px grey;
+        }
+.__tab .card {
+    width: 45%!important;
+}
+.__tab .v-flex {
+    justify-content: flex-start;
+}
+.__name {
+    padding: 0 0 .2rem;
+    margin: 0;
+    text-shadow: 0 0 2px black;
+}
+.__subname {
+    display: inline-block;
+    padding: 0;
+    margin: 0 0 1rem;
+    color: var(--grey, rgb(163, 162, 162));
+}
+.text {
+    color: var(--gray, grey);
+}
+.text.has-pseudo::before {
+  content: '"';
+  font-family: serif;
+  font-size: 2rem;
+  color: var(--mainColor);
+}
+.text b {
+    font-size: 1.2rem;
+    color: var(--gray, grey);
+}
+.profile .rank .material-icons {
+    color: var(--subColor);
+    vertical-align: top;
+    text-shadow: 0 0 2px var(--subColor);
+}
+.profile .rank .material-icons.is-not {
+    color: rgba(100, 149, 237,0.3);
+    text-shadow: 0 0 2px transparent;
+}
+.profile .links {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: space-between;
+}
+.profile .links > *:nth-child(even), .tabs .__header > *:nth-child(even) {
+    margin: 0 .5rem;
+}
+.tabs .__header {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: thin solid lightgrey;
+}
+    .tabs .__header .__link {
+        --border: transparent;
+        --color: rgb(156, 155, 155);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .7rem .3rem;
+        text-transform: capitalize;
+        color: var(--color);
+        border-bottom: .2rem solid var(--border);
+        transition: .3s ease-in-out;
+        font-weight: bold;
+    }
+        .tabs .__header .__link .material-icons {margin: 0 .3rem 0 0;}
+        .tabs .__header .__link.is-active, .tabs .__header .__link:hover {
+            --border: var(--subColor);
+            --color: rgb(82, 81, 81);
+        }
+.profile .rank b {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-right: .5rem;
+}
+@media (min-width: 1200px) {
+.mobile {
+    display: none!important;
+}
+.desktop {
+    display: block;
+}
+.profile .__left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.img {
+    width: 35%;
+}
+.__img {
+    border-radius: .3rem;
+    height: 15rem;
+    width: 100%;
+    outline: none;
+    background-color: rgb(66, 75, 102);
+}
+.tabs {
+    width: 70%;
+    margin-left: 5rem;
+}
+.details {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin-left: 5rem;
+}
+.profile .__right {
+    display: flex;
+}
+.profile .__right .section {
+    width: 35%;
+}
+.profile .section {
+    padding: 2rem 0;
+}
+.text {
+    text-align: left;
+}
+}
+
+
 @media (prefers-color-scheme: dark) {
   :root {
     --mainColor: #5a4074;

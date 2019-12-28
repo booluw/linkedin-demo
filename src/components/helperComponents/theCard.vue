@@ -25,7 +25,7 @@
                 {{review}}
             </div>
             <div v-if='commentBtn=="Yes"'>
-                <button class="__btn is-selected" @click="remove_tutorial()" v-if="isSelected">You're Attending</button>
+                <button class="__btn is-selected" @click="remove_tutorial()" v-if="isSelected">Attending</button>
                 <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
             </div>
             <router-link :to="'/'+this.detail.tutor+'/'+this.detail.title" v-else>
@@ -123,7 +123,7 @@ export default {
         ]),
         changePage: function() {
             console.log('ChangePage here');
-            this.$router.push({name: 'tutorialPage',params: {title: `${this.detail.title}`}});
+            this.$router.push({name: 'tutorialPage',params: {title: `${this.detail.title}`, tutor: `${this.detail.tutor}`}});
         },
         checker: function() {
             //Checks if this tutorial is selected
@@ -150,7 +150,6 @@ export default {
     display: flex;
     text-align: left;
     flex-direction: column;
-    border: 1px solid rgba(100, 149, 237,.2);
     border-radius: var(--borderRadius);
     margin: .3rem .2rem;
     padding: 0;
@@ -174,7 +173,7 @@ export default {
     padding: 0 0 .5rem;
 }
 .__title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0;
     color: var(--headerText);
     font-weight: bolder;

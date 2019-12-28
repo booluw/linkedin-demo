@@ -53,14 +53,24 @@ export default new Router({
       component: () => import('./views/tutorPage.vue')
     },
     {
-      path: '/locations/:location',
-      name: 'locationPage',
-      component: () => import('./views/tutorPage.vue')
+      path: '/locations',
+      name: 'locations',
+      component: () => import('./views/locations.vue')
     },
     {
-      path: '/explore/:title',
+      path: '/locations/:location',
+      name: 'locationPage',
+      component: () => import('./views/locationPage.vue')
+    },
+    {
+      path: '/explore/:tutor/:title',
       name: 'tutorialPage',
       component: () => import('./views/tutorialPage.vue')
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('./views/checkout.vue')
     }
   ]
 })

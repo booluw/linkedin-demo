@@ -104,7 +104,8 @@ export default new Vuex.Store({
       {
         'image': '',
         'hall': 'NLR 2',
-        'campus': 'Gidan Kwano'
+        'campus': 'Gidan Kwano',
+        capacity: 129
       },
       {
         'image': '',
@@ -140,6 +141,7 @@ export default new Vuex.Store({
     tutors: [
       {
         'name': 'Jayson X',
+        'quote': 'I am who I think I am, so are you',
         'dept': 'CPT',
         'level': 400,
         'phone': 9086555753,
@@ -150,6 +152,7 @@ export default new Vuex.Store({
       },
       {
         'name': 'Paulinus',
+        'quote': 'Don\'t think you\'re the best, someone somewhere is better.',
         'dept': 'CPE',
         'level': 200,
         'phone': 801111123,
@@ -160,6 +163,7 @@ export default new Vuex.Store({
       },
       {
         'name': 'ChiChris',
+        'quote': 'Influence. Influence. Influence yet again.',
         'dept': 'CPT',
         'level': 400,
         'phone': 903304004,
@@ -170,6 +174,7 @@ export default new Vuex.Store({
       },
       {
         'name': 'Ojoanache',
+        'quote': 'I want to be a programmer, brogrammer.',
         'dept': 'CPT',
         'level': 400,
         'phone': 3929393,
@@ -180,6 +185,7 @@ export default new Vuex.Store({
       },
       {
         'name': 'PhillyT',
+        'quote': 'Hey! HelloWorld',
         'dept': 'MCB',
         'level': 300,
         'phone': 2938443,

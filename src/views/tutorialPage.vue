@@ -142,7 +142,7 @@ export default {
             'removeTutorial'
         ]),
         fetchData: function() {
-            this.tutorial = this.tutorials.find(i => (i.title == this.$route.params.title));
+            this.tutorial = this.tutorials.find(i => (i.title == this.$route.params.title && i.tutor == this.$route.params.tutor));
             this.tutor = this.tutors.find(i => (i.name ==this.tutorial.tutor));
             if (this.selected.some(select => (select.title==this.tutorial.title))) {
                 this.isSelected = true;

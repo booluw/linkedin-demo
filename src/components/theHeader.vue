@@ -20,7 +20,7 @@
                 <router-link to="/login" class="cta">Login</router-link>
             </nav>
          </header>
-         <transition class="mobile" enter-active-class="animated slideInUp faster" leave-active-class="animated slideOutDown faster">
+         <transition class="mobile" enter-active-class="animated slideInLeft faster" leave-active-class="animated slideOutLeft faster">
             <nav class="nav mobile" v-if="menuToggle">
                 <h2>
                     tutera.tk
@@ -42,7 +42,7 @@ export default {
         }
     },
     watch: {
-        '$route' : 'menutoggle'
+        '$route' : 'menutoggle',
     },
     methods: {
         menutoggle: function() {
@@ -62,9 +62,7 @@ export default {
     color: #0d51ce;
 }
 .header {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0px;
+    position: relative;
     display: flex;
     padding: 0 .5rem;
     background-color: white;
@@ -87,38 +85,35 @@ export default {
     z-index: 3;
 }
 .nav a, .nav a:visited {
-    color: var(--cta);
-    background-color: rgba(0, 0, 0, 0.322);
+    --bg: rgba(0, 0, 0, 0.322);
+    --color: var(--cta);
+    color: var(--color);
+    background-color: var(--bg);
     font-weight: normal;
     margin: .15rem .1rem;
     padding: .5rem 1rem;
-    border: 1.5px solid rgba(0, 0, 0, 0.322);
+    border: 1.5px solid var(--bg);
     border-radius: var(--borderRadius);
     transition: .3s ease-in-out;
 }
+a.cta {
+    --color: var(--cta);
+    --bg: var(--ctaSubtile);
+    color: var(--color);
+    font-weight: bold;
+    background-color: var(--bg);
+    padding: .6rem 2rem;
+    border: 1.5px solid var(--color);
+    border-radius: var(--borderRadius);
+    transition: .3s ease-in-out;
+}
+    a.cta:hover {
+        --color: white;
+        --bg: var(--cta);
+    }
 .nav a:hover, .header .router-link-active:not(.logo) {
     background-color: var(--subColor);
-    color: white!important;
-}
-.cta {
-    border: 1.5px solid var(--cta)!important;
-}
-.mobile {
-    display: block;
-}
-.desktop {
-    display: none;
-}
-.cta {
-    background-color: rgba(255, 165, 0,.1)!important;
-    color: var(--cta)!important;
-    padding: .5rem 1.5rem;
-    border-radius: var(--borderRadius);
-    border: 1.5px solid var(--cta);
-}
-.cta:hover {
-    background-color: var(--cta)!important;
-    color: white!important;
+    color: white;
 }
 @supports (display: grid){
     .header {
@@ -138,12 +133,6 @@ export default {
         align-content: space-between;
         z-index: 1;
     }
-    .mobile {
-        display: none!important;
-    }
-    .desktop {
-        display: block;
-    }
     .nav {
         display: flex;
         justify-content: flex-end;
@@ -151,27 +140,35 @@ export default {
         align-content: space-between;
     }
     .nav a, .nav a:visited {
-        color: var(--subColor);
-        background-color: rgba(100, 149, 237,0.05);
+        --color: var(--subColor);
+        --bg: var(--subSubtile);
+        color: var(--color);
+        background-color: var(--bg);
         font-weight: normal;
         margin: 0 .1rem;
         padding: .5rem 1rem;
-        border: 1.5px solid var(--subColor);
+        border: 1.5px solid var(--bg);
         border-radius: var(--borderRadius);
     }
     .nav a:hover {
-        background-color: var(--subColor);
+        background-color: var(--color);
         color: white;
     }
-    .cta {
-        border: 1.5px solid var(--cta)!important;
+    .nav a.cta {
+        --color: var(--cta);
+        --bg: var(--ctaSubtile);
+    }
+    .nav a.cta:hover {
+        --color: var(--cta);
+        
     }
     input[type="search"] {
         padding: .5rem;
-        width: 30vw;
+        width: 47vw;
+        margin: 0 1rem 0 0;
         border-radius: var(--borderRadius);
         outline: none;
-        border: 1.5px solid var(--subColor);
+        border: 1.5px solid var(--subSubtile);
         transition: .3s ease-in;
         background-color: rgba(100, 149, 237,0.05);
     }
