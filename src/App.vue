@@ -184,7 +184,7 @@ img.logo {
   display: block;
   font-family: 'Montserrat','Avenir', Helvetica, Arial, sans-serif;
   padding: 1rem;
-  margin: .5rem 0;
+  margin: .5rem .5rem;
   border-radius: var(--borderRadius);
   cursor: pointer;
   font-weight: bolder;
@@ -199,46 +199,53 @@ img.logo {
     .btn.btn-link:hover {
       background-color: var(--mainColor);
       color: white;
+      box-shadow: 0 0 5px 3px grey;
     }
-  .btn.is-dangerous {
+  .btn.btn-small {
+    padding: 1rem;
+  }
+  .btn.is-dangerous,.btn.is-dangerous:hover  {
     background-color: crimson;
     color: white;
     opacity: .8;
     transition: .3s ease-in-out;
     text-shadow: 0 0 5px black;
+    border-color: crimson;
   }
-  .btn.is-successful {
+  .btn.is-successful,.btn.is-successful:hover {
     background-color: forestgreen;
     color: white;
     opacity: .8;
     transition: .3s ease-in-out;
     text-shadow: 0 0 5px black;
+    border-color: forestgreen;
   }
-  .btn.is-primary {
+  .btn.is-primary,.btn.is-primary:hover {
     background-color: cornflowerblue;
     color: white;
     opacity: .8;
     transition: .3s ease-in-out;
     text-shadow: 0 0 5px black;
+    border-color: cornflowerblue;
   }
 /*===========
 __btn: A special type of button,
       used in theCard.vue and tutorialPage.vue
 ===========*/
 .__btn {
-    background-color: transparent;
-    padding: .9rem;
-    color: var(--mainColor);
-    font-weight: bold;
-    border: 1.5px solid var(--mainColor);
-    border-radius: 3rem;
-    transition: .3s ease-in;
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  background-color: transparent;
+  padding: .9rem;
+  color: var(--mainColor);
+  font-weight: bold;
+  border: 1.5px solid var(--mainColor);
+  border-radius: 3rem;
+  transition: .3s ease-in;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
   .__btn:hover {
         border-color: var(--mainColor);
@@ -261,7 +268,7 @@ __btn: A special type of button,
     }
   .__btn.is-dangerous {
     border-color: crimson;
-    color: crimson;
+    color: white;
     text-shadow: 0 0 1px crimson;
   }
     .__btn.is-dangerous.primary {
@@ -283,25 +290,43 @@ __btn: A special type of button,
   padding: .5rem .7rem;
   border-radius: 1rem;
 }
+/*
+  INPUT-GROUP
+*/
 .input-group {
   display: flex;
   flex-direction: column;
-  color: var(--mainColor);
+  color: white;
+  border-radius: var(--borderRadius);
+  margin: .5rem 0;
 }
-  .input-group input, .input-group select {
-    padding: .5rem;
-    margin: .1rem 0;
-    background-color: rgba(100, 149, 237,0.05);
-    border: 1.5px solid rgba(0,0,0,.3);
-    border-radius: var(--borderRadius);
-    cursor: pointer;
-  }
-  .input-group input:hover,
-  .input-group select:focus {
-    border-color: var(--subColor);
-    box-shadow: 0 0 10px 1px var(--subColor);
-    outline: none;
-  }
+.input-group .label, .input-group .input {
+  padding: .25rem .5rem;
+  font-weight: bold;
+  background-color: var(--mainColor);
+  border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+}
+.input-group .label:not(.with-btn) {
+  padding: .65rem .5rem;
+}
+.input-group .label.with-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .5rem;
+}
+.input-group .input {
+  color: var(--mainColor);
+  font-weight: normal;
+  background-color: var(--mainSubtile);
+  border: none;
+  border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+  font-size: 1.2rem;
+  padding: .5rem;
+}
+.input-group .input:focus {
+  outline: none;
+}
 /*========
 section attribute
 ========*/
@@ -348,7 +373,29 @@ Toast
   justify-content: space-between;
   align-items: center;
 }
-
+/*==================
+Notif 
+=================*/
+.notif {
+  --border: var(--subColor);
+  --bg: var(--subSubtile);
+  background-color: var(--bg);
+  color: black;
+  padding: 1rem .7rem;
+  border-left: .5rem solid var(--border);
+}
+.notif.is-dangerous {
+  --border: crimson;
+  --bg: rgba(220, 20, 60, 0.3);
+}
+.notif.is-successful {
+  --border: forestgreen;
+  --bg: rgba(34, 139, 34, 0.3);
+}
+.notif.is-warning {
+  --border: orange;
+  --bg: rgba(255, 166, 0, 0.3);
+}
 .emp {
   text-shadow: 0 0 2px black;
 }

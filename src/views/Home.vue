@@ -3,27 +3,27 @@
     <HelloWorld />
     <form action="/" class="i-search">
       <div class="input-group">
-        <label for="campus">Campus</label>
-        <select name="campus" id="campus">
+        <label for="campus" class="label">Campus</label>
+        <select name="campus" id="campus" class="input">
           <option value="BS">Bosso</option>
           <option value="GK">Gidan Kwano</option>
         </select>
       </div>
       <div class="input-group">
-        <label for="day">Day</label>
-        <select name="day" id="day">
-          <option value="1">Monday</option>
-          <option value="2">Tuesday</option>
-          <option value="3">Wednesday</option>
-          <option value="4">Thursday</option>
-          <option value="5">Friday</option>
-          <option value="6">Saturday</option>
-          <option value="0">Sunday</option>
+        <label for="day" class="label">Day</label>
+        <select name="day" id="day" class="input">
+          <option value="Mondays">Monday</option>
+          <option value="Tuesdays">Tuesday</option>
+          <option value="Wednesdays">Wednesday</option>
+          <option value="Thursdays">Thursday</option>
+          <option value="Fridays">Friday</option>
+          <option value="Saturdays">Saturday</option>
+          <option value="Sundays">Sunday</option>
         </select>
       </div>
       <div class="input-group">
-        <label for="level">Level</label>
-        <select name="level" id="level">
+        <label for="level" class="label">Level</label>
+        <select name="level" id="level" class="input">
           <option value="100">100</option>
           <option value="200">200</option>
           <option value="300">300</option>
@@ -32,8 +32,8 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="faculty">Faculty</label>
-        <select name="faculty" id="faculty">
+        <label for="faculty" class="label">Faculty</label>
+        <select name="faculty" id="faculty" class="input">
           <option value="SICT">SICT</option>
           <option value="SPS">SPS</option>
           <option value="SLS">SLS</option>
@@ -141,7 +141,7 @@ export default {
   font-weight: bold;
   padding: 1rem .5rem;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: stretch;
   justify-content: center;
   background-color: rgba(100, 149, 237,0.1);
 }

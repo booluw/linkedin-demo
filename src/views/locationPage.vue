@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="__tab" v-if="tab == 'nearby'" key="nearby">
-                                <h4 class="snub">Locations in {{location.campus}}</h4>
+                                <h4 class="snub">other Locations in {{location.campus}}</h4>
                                 <div class="v-flex">
                                     <location-card v-for="location in nearby" :detail="location" :key="location.hall" />
                                 </div>
@@ -116,7 +116,9 @@ export default {
     },
     mounted() {
         this.fetchData();
-        '$route'
+        /*'$route': {
+            this.fetchData();
+        } */
     },
     methods: {
         fetchData: function() {

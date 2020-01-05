@@ -18,7 +18,7 @@ export default new Vuex.Store({
     selected : [],
     tutorials: [
       {
-        'date':[0],
+        'date':['Sundays'],
         'time':'4:30pm',
         'title':'CPT 311',
         'tutor':'Jayson X',
@@ -30,8 +30,8 @@ export default new Vuex.Store({
         'level': '300'
       },
       {
-        'date':[0,1],
-        'time':'12:10pm',
+        'date':['Sundays', 'Mondays', 'Saturdays'],
+        'time':'12:30pm',
         'title':'CPT 516',
         'tutor':'Jayson X',
         'location':'SICT LT',
@@ -42,7 +42,7 @@ export default new Vuex.Store({
         'level': '500'
       },
       {
-        'date':[2,5],
+        'date':['Tuesdays', 'Fridays'],
         'time':'6:30pm',
         'title':'CPE 211',
         'tutor':'Paulinus',
@@ -54,8 +54,8 @@ export default new Vuex.Store({
         'level': '200'
       },
       {
-        'date':[1],
-        'time':'6pm',
+        'date':['Thursdays'],
+        'time':'6:30pm',
         'title':'CPT 311',
         'tutor':'ChiChris',
         'location':'Auditorium',
@@ -66,7 +66,7 @@ export default new Vuex.Store({
         'level': '300'
       },
       {
-        'date':[5,6],
+        'date':['Saturdays', 'Fridays'],
         'time':'4:00pm',
         'title':'CIT 315',
         'tutor':'Ojoanache',
@@ -78,7 +78,7 @@ export default new Vuex.Store({
         'level': '300'
       },
       {
-        'date':[2,6],
+        'date':['Sundays', 'Wednesdays'],
         'time': '3:30pm',
         'title':'MAT 225',
         'tutor':'PhillyT',
@@ -206,10 +206,16 @@ export default new Vuex.Store({
           return item !== toBeDeleted;
         });
     },
+    REMOVE_ALL: (state) => {
+      state.selected = [];
+    }
   },
   actions: {
     removeTutorial: (context, toBeDeleted) => {
         context.commit('REMOVE_TUTORIAL', toBeDeleted);
+    },
+    remove_all: (context) => {
+      context.commit('REMOVE_ALL');
     }
   },
   getters: {

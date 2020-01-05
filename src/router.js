@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
-import Create from './views/Explore.vue'
-import Tutors from './views/Tutors.vue'
+import Create from './views/Create.vue'
+import UserProfile from './views/Explore.vue'
 
 Vue.use(Router)
 /*
@@ -30,21 +30,26 @@ export default new Router({
     {
       path: '/explore',
       name: 'explore',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: Explore,
       alias: '/tutorials'
     },
     {
+      /*
+      PROTECTED VIEW. Users can create tutorials.
+      */
       path: '/create',
       name: 'create',
       component: Create
     },
     {
+      path: '/me',
+      name: 'profilePage',
+      component: UserProfile
+    },
+    {
       path: '/u',
       name: 'tutors',
-      component: Tutors,
+      component: () => import('./views/Tutors.vue'),
       alias: '/tutors'
     },
     {
@@ -68,8 +73,36 @@ export default new Router({
       component: () => import('./views/tutorialPage.vue')
     },
     {
+      /*
+      UNPROTECTED VIEW. Users and Guests can:
+      ======> Checkout, or print, their tutorials.
+      ======> Delete, or Cancel All, their tutorials.
+      ==============> LOGGED_IN USERS can proceed to "Save and Share" their timetable.
+      */
       path: '/checkout',
       name: 'checkout',
+      component: () => import('./views/checkout.vue')
+    },
+    {
+      /*
+        PROTECTED VIEW.In this View, Users can:
+        ======> Save a timetable and share for others to copy and print(/tt/:timetableID).
+        ======> Add reminders in Google Calender.
+        ======> See clashing tutorials.
+
+      */
+      path: '/tt',
+      name: 'timeTable',
+      component: () => import('./views/checkout.vue')
+    },
+    {
+      /*
+      UNPROTECTED VIEW. In this view, Users and Guests can:
+      ========> Print the ":timetableID".
+      ===============> LOGGED_IN USERS can Add reminders in Google Calender.
+      */
+      path: '/tt/:timetableID',
+      name: 'sharedTimeTable',
       component: () => import('./views/checkout.vue')
     }
   ]

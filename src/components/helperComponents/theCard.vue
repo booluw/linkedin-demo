@@ -1,14 +1,19 @@
 <template>
     <div class="card">
         <div class="__header">
-            <span v-for="(d, index) in day" :key="index">
-                <span v-if="(index+1) == day.length">{{d}}</span>
-                <span v-else>{{d}} and </span>
+            <span v-for="(days, index) in detail.date" :key="index">
+                <span v-if="index === 0">{{days}}</span>
+                <span v-else-if="index == detail.date.length-2">{{days}}</span>
+                <span v-else>and {{days}}</span>
             </span>
-            <br />{{detail.time}}</div>
+            {{detail.time}}
+        </div>
         <div class="__body" @click="changePage()">
             <h2 class="__title">{{detail.title}}</h2>
-            <div class="__author">@{{detail.tutor}}</div>
+            <div class="__author">
+                <i class="material-icons">account_circle</i>
+                {{detail.tutor}}
+            </div>
             <div class="__location">
                 <i class="material-icons">location_on</i>
                 {{detail.location}}
@@ -16,7 +21,7 @@
         </div>
         <div class="__footer">
             <div class="__attendees" v-if="showRating=='No'">
-                <i class="material-icons" v-if='commentBtn=="Yes"'>account_box</i>
+                <i class="material-icons" v-if='commentBtn=="Yes"'>check_circle</i>
                 <span v-else>Attending:</span>
                 {{attenders}}
             </div>
@@ -36,7 +41,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: 'Card',
@@ -58,7 +63,6 @@ export default {
     },
     mounted() {
         this.checker()
-        this.date
     },
     data() {
         return {
@@ -77,33 +81,6 @@ export default {
             }
            return sum
         },
-        date: function() {
-            for(let i = 0; i <= this.detail.date.length; i++) {
-                switch (this.detail.date[i]) {
-                    case 0:
-                        this.day.push('Sundays');
-                        break;
-                    case 1:
-                        this.day.push('Mondays');
-                        break;
-                    case 2:
-                        this.day.push('Tuesdays');
-                        break;
-                    case 3:
-                        this.day.push('Wednesdays');
-                        break;
-                    case 4:
-                        this.day.push('Thursdays');
-                        break;
-                    case 5:
-                        this.day.push('Fridays');
-                        break;
-                    case 6:
-                        this.day.push('Saturdays');
-                        break;
-                }
-            }
-        },
         review: function() {
             let avg, sum=0;
             for(let i = 0;i < this.detail.rating.length; i++) {
@@ -114,10 +91,6 @@ export default {
         }
     },
     methods: {
-        ...mapMutations ([
-            'ADD_TUTORIAL',
-            'REMOVE_TUTORIAL'
-        ]),
         ...mapActions ([
             'removeTutorial'
         ]),
@@ -134,7 +107,8 @@ export default {
             }
         },
         add_tutorial: function() {
-            this.ADD_TUTORIAL(this.detail)
+            this.$store.commit('ADD_TUTORIAL', this.detail)
+            //this.ADD_TUTORIAL(this.detail)
             this.isSelected = true
         },
         remove_tutorial: function() {
@@ -156,14 +130,18 @@ export default {
     width: 80%;
     background-color: var(--subSubtile);
     transition: .3s ease-in-out;
+    font-size: .8rem;
 }
 .card:hover {
     box-shadow: 0 0 3px 2px rgba(100, 149, 237,.3);
 }
-.__header {
+.card .__header {
     padding: .5rem;
     color: var(--mainColor);
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .__body {
     padding: .5rem .5rem 2.5rem;
@@ -177,10 +155,10 @@ export default {
     margin: 0;
     color: var(--headerText);
     font-weight: bolder;
-    padding: .7rem 0;
+    padding: .5rem 0;
 }
 .__author {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .__location {
     color: var(--subColor);

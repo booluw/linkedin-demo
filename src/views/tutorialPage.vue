@@ -28,10 +28,11 @@
                 <div style="display:flex;">
                     <i class="material-icons">whatshot</i> <!-- Change this icon to a 'calender'like icon,material-icon's calender has issues --> 
                     <div style="padding: 0;">
-                        &nbsp;<span v-for="(d, index) in day" :key="index" class="emp">
-                            <span v-if="(index+1) == day.length">{{d}}</span>
-                            <span v-else>{{d}} and </span>
-                        </span>&nbsp;
+                        <span class="emp" v-for="(days, index) in tutorial.date" :key="index">
+                            <span v-if="index === 0">{{days}}</span>
+                            <span v-else-if="tutorial.date[tutorial.date.length -1 ] != tutorial.date[index]">{{days}}</span>
+                            <span v-else> and {{days}}</span>
+                        </span>
                         <br />
                         <span class="emp">{{tutorial.time}}</span>
                         <a href="#" style="padding: 0 .5rem;font-size: .8rem;" prevent>Add to Calender</a>
@@ -122,7 +123,6 @@ export default {
             */
             tutorial: {},
             isSelected: false,
-            day : [],
             tutor: {}
         }
     },
@@ -148,31 +148,6 @@ export default {
                 this.isSelected = true;
             } else {
                 this.isSelected = false
-            }
-            for(let i = 0; i <= this.tutorial.date.length; i++) {
-            switch (this.tutorial.date[i]) {
-                case 0:
-                    this.day.push('Sundays');
-                    break;
-                case 1:
-                    this.day.push('Mondays');
-                    break;
-                case 2:
-                    this.day.push('Tuesdays');
-                    break;
-                case 3:
-                    this.day.push('Wednesdays');
-                    break;
-                case 4:
-                    this.day.push('Thursdays');
-                    break;
-                case 5:
-                    this.day.push('Fridays');
-                    break;
-                case 6:
-                    this.day.push('Saturdays');
-                    break;
-                }
             }           
         },
         add_tutorial: function() {
