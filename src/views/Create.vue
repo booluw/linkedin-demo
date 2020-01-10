@@ -41,7 +41,7 @@
                 <div class="notif is-dangerous" v-if="hall.length != 0">
                     <b>{{details.location}}</b> is being used by {{hall[0].tutor}} on {{hall[0].date[0]}} by {{hall[0].time}}. It is therefore not available
                 </div>
-                <div class="h-flex" style="justify-content: space-between; padding: 0 0;">
+                <div class="v-flex" style="justify-content: space-between; padding: 0 0;">
                     <div class="input-group">
                         <div class="label">Tutorial's Level</div>
                         <select v-model="details.level" class="input">
@@ -88,7 +88,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="h-flex" style="padding: 0 0;justify-content: flex-end;">
+                <div class="v-flex" style="padding: 0 0;justify-content: flex-end;">
                     <button class="btn btn-link is-primary" style="text-transform: uppercase;" @click.prevent="saveTutorial()">Launch this tutorial</button>
                     <button type="reset" class="btn btn-small" style="margin: .5rem 0;text-transform: uppercase;">Revert</button>
                 </div>

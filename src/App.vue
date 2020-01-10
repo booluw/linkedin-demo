@@ -633,7 +633,7 @@ hr {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --mainColor: #5a4074;
+    --mainColor: #79589b;
     --subColor: #3f609c;
     --cta: #af750a;
     --text: #5c5b5b;

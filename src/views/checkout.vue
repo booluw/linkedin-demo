@@ -1,6 +1,9 @@
 <template>
     <section class="section">
         <h1>Tutorials you want to attend</h1>
+        <div class="notif is-warning">
+            <b>Please note!</b> This timetable feature is still in development, might not be perfect in its display.
+        </div>
         <table class="timetable">
             <tr class="__time">
                 <td>Day/Time</td>

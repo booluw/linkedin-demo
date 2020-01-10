@@ -42,7 +42,7 @@ export default {
   margin: 0;
   padding: 1rem .5rem;
   width: 100%;
-  height: 65vh;
+  height: 75vh;
   background-color: var(--mainColor);
   color: white;
 }
