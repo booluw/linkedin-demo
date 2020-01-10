@@ -194,6 +194,49 @@ export default new Vuex.Store({
         'join_date': 'Feb. 2020',
         'url': '://mcb.hash',
       }
+    ],
+    quiz: [
+      {
+        title: 'CPT 311',
+        author: 'Boluwatife Johnson',
+        topic: 'General Affairs',
+        note: 'This is a preparatory quiz.',
+        questions: [
+          {
+            question: 'What is the name of the FIRST BILLIONAIRE in the world?',
+            answers: {
+              'A': 'Jeff Belzos',
+              'B': 'Bill Gates',
+              'C': 'Aliko Dangote',
+              'D': 'John D. Rockfeller'
+            },
+            answer: 'John D. Rockfeller',
+            userAnswer: ''
+          },
+          {
+            question: 'Who is the CURRENT VICE-PRESIDENT of Nigeria?',
+            answers: {
+              'A': 'Muhammadu Buhari',
+              'B': 'Goodluck Ebele Jonathan',
+              'C': 'Donald Trump',
+              'D': 'Yemi Osibanjo'
+            },
+            answer: 'Yemi Osibanjo',
+            userAnswer: ''
+          },
+          {
+            question: 'Is Nigeria a country?',
+            answers: {
+              'A': 'True',
+              'B': 'False',
+              'C': 'Maybe',
+              'D': 'Dunno'
+            },
+            answer: 'True',
+            userAnswer: ''
+          }
+        ]
+      }
     ]
   },
   mutations: {

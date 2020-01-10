@@ -127,7 +127,7 @@ export default {
     border-radius: var(--borderRadius);
     margin: .3rem .2rem;
     padding: 0;
-    width: 80%;
+    width: 45%;
     background-color: var(--subSubtile);
     transition: .3s ease-in-out;
     font-size: .8rem;
@@ -175,7 +175,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .card {
-        width: 25%;
+        width: 30%;
     }
 }
 </style>

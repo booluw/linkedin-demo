@@ -15,12 +15,13 @@
                         <div class="alert">
                             {{location.decription||"Oops! This location currently doesn't have a description, why not add one."}}
                         </div>
+                        <div class="section" style="box-shadow: none;padding: 0;margin: 3.5rem 0 0;">
+                            <a href="#" class="__btn">Get directions</a>
+                        </div>
                     </div>
                 </div>
                 <div class="__right" style="align-items: flex-start;">
-                    <div class="section">
-                        <a href="#" class="__btn">Get directions</a>
-                    </div>
+                    <div class="quote"></div>
                     <div class="tabs">
                         <div class="__header">
                             <a href="#" :class="tab=='tutorials' ? '__link is-active': '__link'" @click.prevent="tab='tutorials'">
@@ -43,7 +44,7 @@
                             <div class="__tab" v-if="tab == 'nearby'" key="nearby">
                                 <h4 class="snub">other Locations in {{location.campus}}</h4>
                                 <div class="v-flex">
-                                    <location-card v-for="location in nearby" :detail="location" :key="location.hall" />
+                                    <location-card v-for="location in nearby" :detail="location" :key="location.hall"></location-card>
                                 </div>
                             </div>
                         </transition-group>
@@ -51,39 +52,8 @@
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
+        <section>
+            <router-view></router-view>
         </section>
     </div>
 </template>
@@ -91,14 +61,14 @@
 <script>
 import { mapState } from "vuex";
 
-import Card from '@/components/helperComponents/theCard.vue'
-import SmallCard from '@/components/helperComponents/smallCard.vue'
+import Card from '@/components/AppCard.vue'
+import LocationCard from '@/components/LocationCard.vue'
 
 export default {
     name: 'locationPage',
     components: {
         'page-card': Card,
-        'location-card': SmallCard
+        'location-card': LocationCard
     },
     computed: {
         ...mapState([
@@ -113,6 +83,9 @@ export default {
             tutorial: '',
             tab: 'tutorials'
         }
+    },
+    watch: {
+        '$route': 'fetchData'
     },
     mounted() {
         this.fetchData();

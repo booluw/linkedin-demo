@@ -10,7 +10,7 @@
                         <h1 class="__name">{{tutor.realName||tutor.name}}</h1>
                         <div>
                             <h4 class="__subname">@{{tutor.name}}</h4>,<small>{{tutor.level}}</small>
-                        </div>
+                        </div><!--
                         <h4 class="snub">ratings</h4>
                         <div class="rank">
                             <b>3.0</b>
@@ -20,31 +20,32 @@
                             <i class="material-icons is-not">star</i>
                             <i class="material-icons is-not">star</i>
                         </div>
-                        <br />
+                        <br /> --->
+                        <h4 class="snub">actions</h4>
                         <div class="links">
                             <!-- 
                                 The below "Call User" button allows the user to send
                                 call this user directly. *Wink*
                             -->
                             <a href="" class="subtile-link is-active">
-                                <i class="material-icons">phone</i>Call User
+                                <i class="material-icons">phone</i>Call
                             </a>
                             <!-- 
                                 The below "Send Message" button allows the user to send
                                 message to this tutor via whatsapp. *Wink*
                             -->
                             <a :href="'https://wa.me/234'+tutor.phone" class="subtile-link">
-                                <i class="material-icons">mail</i> Send Message
+                                <i class="material-icons">mail</i> Message
                             </a>
                             <a href="" class="subtile-link is-disabled">
                                 <i class="material-icons">warning</i>
-                                Report user
+                                Report
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="__right">
-                    <div class="section">
+                    <div class="quote">
                         <h4 class="snub-header">
                             Favourite quote
                         </h4>
@@ -99,39 +100,8 @@
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
+        <section>
+            <router-view></router-view>
         </section>
     </div>
 </template>
@@ -139,7 +109,7 @@
 <script>
 import { mapState } from "vuex";
 
-import Card from '@/components/helperComponents/theCard.vue'
+import Card from '@/components/AppCard.vue'
 
 export default {
     name: 'tutorPage',

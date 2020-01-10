@@ -73,6 +73,11 @@ export default new Router({
       component: () => import('./views/tutorialPage.vue')
     },
     {
+      path: '/explore/:tutor/:title/quiz',
+      name: 'quizPage',
+      component: () => import('./views/quizPage.vue')
+    },
+    {
       /*
       UNPROTECTED VIEW. Users and Guests can:
       ======> Checkout, or print, their tutorials.
@@ -105,5 +110,8 @@ export default new Router({
       name: 'sharedTimeTable',
       component: () => import('./views/checkout.vue')
     }
-  ]
-})
+  ],
+  scrollBehaviour (to, from, savedPosition) {
+    return {x: 0, y:0 };
+  }
+});

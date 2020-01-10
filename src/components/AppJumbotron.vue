@@ -14,7 +14,10 @@
       </div>
     </div>
     <div class="jumba">
-      Watch the Introductory video.
+      <div class="curved"></div>
+      <div class="curved-2">
+        <img src="../assets/jumbo_img.jpg" class="img" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +31,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
+  position: relative;
   display: flex;
+  background-color: var(--mainColor);
 }
 .jumbotron {
   display: flex;
@@ -99,10 +104,10 @@ h1 {
   }
   .jumbotron__bottom {
     padding: 10vh 0;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .btn {
     margin: 1rem 0;
@@ -112,11 +117,36 @@ h1 {
   }
   .jumba {
     display: block;
-    background-color: var(--mainColor);
+    background-color: transparent;
     color: grey;
     font-weight: bolder;
     width: 50%;
-    padding: 20% 5%;
+  }
+  .curved {
+    position: absolute;
+    top: -15rem;
+    bottom: 0;
+    width: 100%;
+    height: 150%;
+    background-color: #F5F8FF;
+    transform: rotate(30deg);
+    border-radius: 2rem;
+  }
+  .curved-2 {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80%;
+    color: black;
+    transform: rotate(0deg);
+    border-radius: 2rem;
+  }
+  .img {
+    height: 50%;
+    width: auto;
   }
 }
 </style>

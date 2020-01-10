@@ -23,7 +23,7 @@ export default {
 
 <style>
 .small.card {
-    width: 45%;
+    width: 35%;
     margin: .2rem;
     padding: 0;
     color: var(--headerText);
@@ -58,7 +58,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .small.card {
-        width: 20%;
+        width: 30%;
     }
 }
 </style>

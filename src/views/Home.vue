@@ -1,7 +1,17 @@
 <template>
   <div class="home">
-    <HelloWorld />
+    <Jumbotron />
     <form action="/" class="i-search">
+      <div class="input-group">
+        <label for="level" class="label">Level</label>
+        <select name="level" id="level" class="input">
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="300">300</option>
+          <option value="400">400</option>
+          <option value="500">500</option>
+        </select>
+      </div>
       <div class="input-group">
         <label for="campus" class="label">Campus</label>
         <select name="campus" id="campus" class="input">
@@ -21,32 +31,8 @@
           <option value="Sundays">Sunday</option>
         </select>
       </div>
-      <div class="input-group">
-        <label for="level" class="label">Level</label>
-        <select name="level" id="level" class="input">
-          <option value="100">100</option>
-          <option value="200">200</option>
-          <option value="300">300</option>
-          <option value="400">400</option>
-          <option value="500">500</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="faculty" class="label">Faculty</label>
-        <select name="faculty" id="faculty" class="input">
-          <option value="SICT">SICT</option>
-          <option value="SPS">SPS</option>
-          <option value="SLS">SLS</option>
-          <option value="SIPET">SIPET</option>
-          <option value="SEET">SEET</option>
-          <option value="SAAT">SAAT</option>
-          <option value="SEMT">SEMT</option>
-          <option value="SSTE">SSTE</option>
-          <option value="SET">SET</option>
-        </select>
-      </div>
       <button type="submit" class="btn is-primary">Search Tutorials</button>
-    </form>
+    </form><br /><br /><br />
     <section class="section">
       <h1 class="main">For students, by students</h1>
       <p class="text">
@@ -80,7 +66,7 @@
         Tutorial locations across both campuses.
       </p>
       <div class="h-flex">
-        <small-card v-for="(location, index) in locations" :key="index" :detail="location" />
+        <location-card v-for="(location, index) in locations" :key="index" :detail="location"></location-card>
       </div>
       <div class="footer">
         <router-link to="/locations" class="btn btn-link">All locations</router-link>
@@ -108,18 +94,18 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import Card from '@/components/helperComponents/theCard.vue'
-import SmallCard from '@/components/helperComponents/smallCard.vue'
+import Jumbotron from '@/components/AppJumbotron.vue'
+import Card from '@/components/AppCard.vue'
+import LocationCard from '@/components/LocationCard.vue'
 
 import { mapState } from 'vuex'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    Jumbotron,
     'page-card' : Card,
-    'small-card' : SmallCard
+    'location-card' : LocationCard
   },
   computed: {
     ...mapState([
@@ -141,19 +127,28 @@ export default {
   font-weight: bold;
   padding: 1rem .5rem;
   flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: center;
-  background-color: rgba(100, 149, 237,0.1);
+  align-items: center;
+  justify-content: space-evenly;
 }
 .i-search > * {
-  margin: 0 .2rem;
-  width: 45%;
+  margin: .5rem .2rem;
+  width: 25%;
 }
 .i-search button.btn {
   margin: .5rem 0;
   border: none;
-  padding: .7rem 5rem!important;
+  padding: .7rem 5rem;
   width: 93%;
+  opacity: .7;
+  text-transform: uppercase;
+}
+.i-search button.btn:hover {
+  opacity: 1;
+}
+.i-search > .input-group .label {
+  background-color: transparent;
+  color: var(--mainColor);
+  font-weight: bolder;
 }
 .section {
   display: flex;
@@ -199,7 +194,15 @@ export default {
 }
 @media (min-width: 1200px) {
   .i-search {
-    padding: 2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2rem;
+    padding: 2rem .5rem;
+    background-color: white;
+    margin: 2rem 2rem -5rem;
+    box-shadow: 0 0 15px 15px var(--mainSubtile);
+    border-radius: .3rem;
   }
   .i-search > * {
     width: 15%;
@@ -209,11 +212,14 @@ export default {
   }
   .i-search button.btn {
     width: 30%;
-    padding: .85rem .5rem!important;
-    margin: 0 0 0 4.5rem!important;
+    padding: 1.5rem .5rem;
+    margin: 0 0 0 4.5rem;
   }
   .section {
     padding: 2rem 2rem;
+    margin: 2rem 2.5rem;
+    box-shadow: 0 0 20px 5px var(--mainSubtile);
+    border-radius: .3rem;
   }
   .section .text {
     font-size: 1.3rem;

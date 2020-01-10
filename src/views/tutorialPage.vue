@@ -4,109 +4,115 @@
             <transition enter-active-class="animated slideInDown faster" leave-active-class="animated slideOutUp faster">
                 <page-alert msg="You are attending this tutorial" v-if="isSelected"/>
             </transition>
-            <div class="tutorial" section="b-top">
-                <span class="__header">
-                    <span v-for="(d, index) in day" :key="index">
-                        <span v-if="(index+1) == day.length">{{d}}</span>
-                        <span v-else>{{d}} and </span>
-                    </span>
-                </span>
-                <h1 class="__title">
-                    {{tutorial.title}}
-                </h1>
-                <div class="__tutor">
-                    <img src="" :alt="`${tutor.name}`"/>
-                    <div>
-                        <b class="emp"><router-link :to="`/u/${tutor.name}`" :title="`View ${tutor.name}'s profile.`" class="__link">{{tutor.name}}</router-link></b>
-                        {{tutor.dept}},{{tutor.level}}
+            <div class="profile">
+                <div class="__left">
+                    <div class="img">
+                        <img src="../assets/logo.png" class="__img" />
                     </div>
-                    <button class="__btn primary" @click="add_tutorial()" v-if="!isSelected">Attend</button>
-                    <button class="__btn is-dangerous primary" @click="remove_tutorial()" v-if="isSelected">Cancel Attend</button>
-                </div>
-            </div>
-            <div class="tutorial" section>
-                <div style="display:flex;">
-                    <i class="material-icons">whatshot</i> <!-- Change this icon to a 'calender'like icon,material-icon's calender has issues --> 
-                    <div style="padding: 0;">
-                        <span class="emp" v-for="(days, index) in tutorial.date" :key="index">
-                            <span v-if="index === 0">{{days}}</span>
-                            <span v-else-if="tutorial.date[tutorial.date.length -1 ] != tutorial.date[index]">{{days}}</span>
-                            <span v-else> and {{days}}</span>
-                        </span>
-                        <br />
-                        <span class="emp">{{tutorial.time}}</span>
-                        <a href="#" style="padding: 0 .5rem;font-size: .8rem;" prevent>Add to Calender</a>
-                    </div>
-                </div>
-                <br />
-                <i class="material-icons">location_on</i><router-link :to="{path: `/locations/${tutorial.location}`}" target="_blank" :title="`Click to view ${tutorial.location}`" class="emp">{{tutorial.location}}</router-link>
-                <a href="//maps.google.com" style="padding: 0 .5rem;font-size: .8rem;" prevent>View on Maps</a>
-            </div>
-            <div class="tutorial" section>
-                <b>Detail:</b><br />
-                <p v-html="tutorial.description"></p>
-            </div>
-            <img src="//" :alt="`Image of ${tutorial.location}`" class="tutorial" section />
-            <div class="tutorial" section="b-bottom">
-                <b>Attendees</b>&nbsp;&nbsp;&nbsp;[{{tutorial.attenders.length}}]
-                <div class="h-flex">
-                    <router-link :to="{path: `/u/${persons}`}" class="small card" v-for="(persons, index) in tutorial.attenders" :key="index">
-                        <div class="__image" style="background-image: url('')"></div>
-                        <div class="__footer">
-                            <div class="__hall">{{persons}}</div>
+                    <div class="details">
+                        <h1 class="__name">{{tutorial.title}}</h1>
+                        <div>
+                            <router-link :to="`/u/${tutorial.tutor}`"><h4 class="__subname">{{tutorial.tutor}}</h4></router-link >
                         </div>
-                    </router-link>
+                        <div>
+                            <i class="material-icons">location_on</i>
+                            <router-link :to="`/locations/${tutorial.location}`">{{tutorial.location}}</router-link>,<small>{{tutorial.campus}}</small>
+                        </div>
+                        <br />
+                        <div>
+                            <i class="material-icons">today</i>
+                            <span v-for="(days, index) in tutorial.date" :key="index">
+                                <span v-if="index === 0"> {{days}}</span>
+                                <span v-else-if="index == tutorial.date.length-2">{{days}}</span>
+                                <span v-else> and {{days}}</span>
+                            </span>, {{tutorial.time}}
+                            <br />
+                        </div>
+                        <br/>
+                        <div class="notif is-warning" v-if="tutorial.note">
+                            {{tutorial.note ||"Hello guys, we won't be available this week."}}
+                        </div>
+                        <br />
+                        <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut faster">
+                            <div class="links" v-if="!isSelected">
+                                <a href="" class="subtile-link is-default" @click.prevent="add_tutorial()" v-if="isSelected == false">
+                                    <i class="material-icons">star</i>Attend
+                                </a>
+                                <a href="" class="subtile-link is-disabled" v-if="!isSelected">
+                                    <i class="material-icons">warning</i>
+                                    Report Tutorial
+                                </a>
+                            </div>
+                        </transition>
+                        <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut faster">
+                            <div class="links" v-if="isSelected">
+                                <a href="" class="subtile-link is-dangerous" @click.prevent="remove_tutorial()">
+                                    <i class="material-icons is-not">star</i>Cancel Attend
+                                </a>
+                                <router-link :to="`${tutorial.title}/quiz`" class="subtile-link is-successful">
+                                    <i class="material-icons">question_answer</i>
+                                    Take Quiz
+                                </router-link>
+                            </div>
+                        </transition>
+                    </div>
+                </div>
+                <div class="__right">
+                    <div class="quote">
+                        <h4 class="snub-header">
+                            description
+                        </h4>
+                        <div class="text has-pseudo" style="padding: 0;">
+                            {{tutorial.description}}
+                        </div><br />
+                        <hr />
+                    </div>
+                    <div class="tabs">
+                        <div class="__header">
+                            <a href="#" :class="tab=='about' ? '__link is-active' : '__link'" @click.prevent="tab='about'">
+                                <i class="material-icons">account_box</i> about
+                            </a>
+                            <a href="#" :class="tab=='tutorials'?'__link is-active': '__link'" @click.prevent="tab='tutorials'">
+                                <i class="material-icons">school</i> tutorials
+                            </a>
+                        </div>
+                        <transition-group enter-active-class="animated fadeIn slower" leave-active-class="animated fadeOut faster">
+                            <div class="__tab" v-if="tab=='tutorials'" key="tutorials">
+                                <h4 class="snub">tutorials</h4>
+                                <div class="v-flex">
+                                </div>
+                            </div>
+                            <div class="__tab" v-if="tab=='about'" key="about">
+                                <h4 class="snub">additional information</h4>
+                                <div class="__item">
+                                    <b>Level:</b>{{tutorial.level}}
+                                </div>
+                                <div class="__item">
+                                    <b>Campus:</b>{{tutorial.campus}}
+                                </div>
+                            </div>
+                        </transition-group>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="section">
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
+        <section>
+            <router-view></router-view>
         </section>
     </div>
 </template>
 
 <script>
-import Alert from '@/components/helperComponents/theAlert.vue'
-import Card from '@/components/helperComponents/theCard.vue'
+import Alert from '@/components/AppAlert.vue'
+import Card from '@/components/AppCard.vue'
 
 import { mapState, mapMutations, mapActions } from "vuex"
 
 export default {
     name: 'Tutorialpage',
     components: {
-        'page-alert' : Alert,
-        Card
+        'page-alert': Alert,
+       'page-card': Card
     },
     computed: {
         ...mapState([
@@ -123,12 +129,12 @@ export default {
             */
             tutorial: {},
             isSelected: false,
-            tutor: {}
+            tutor: {},
+            tab: 'about'
         }
     },
-    created() {
+    mounted() {
         this.fetchData();
-        console.log(this.$route);
     },
     watch: {
         '$route': 'fetchData'
@@ -164,44 +170,29 @@ export default {
 }
 </script>
 <style scoped>
-.tutorial {
-    margin: .5rem;
-    background-color: rgba(100, 149, 237,.1);
+.is-dangerous {
+    color: crimson;
+    background-color: rgba(220, 20, 60, 0.3);
 }
-.tutorial .__header {
-    color: grey;
+.is-dangerous:hover {
+    background-color: rgba(220, 20, 60, 0.3);
+    box-shadow: 0 0 2px 3px rgba(220, 20, 60, 0.2);
 }
-.tutorial .__title {
-    font-size: 2.5rem;
-    padding: 2rem 0;
-    margin: 0;
+.is-default {
+    color: var(--mainColor);
+    background-color: var(--mainSubtile);
 }
-.tutorial .__tutor {
-    display: flex;
-    position: relative;
+.is-successful {
+    color: rgba(34, 139, 34, 0.6);
+    background-color: rgba(34, 139, 34, 0.1);
 }
-.tutorial .__tutor img {
-    width: 3rem;
-    height: 3rem;
-    background-color: rgba(0,0,0,0.5);
-    border-radius: var(borderRadius);
+.__subname {
+    text-decoration: underline;
 }
-.__tutor div {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-    position: relative;
+.__subname:hover {
+    text-decoration: none;
 }
-.__tutor .__btn {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  opacity: .6;
-}
-.__tutor .__btn:hover {
-    opacity: 1;
-}
-.__link {
-    color: var(--cta);
+div > .material-icons {
+    opacity: .9;
 }
 </style>

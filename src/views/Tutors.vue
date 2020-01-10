@@ -7,52 +7,21 @@
                 <tutor-card v-for="(tutor, index) in tutors" :key="index" :detail="tutor"/>
             </div>
         </section>
-        <section class="section">
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-            </div>
-            <div section>
-                Lorem, ipsum dolor sit amet 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi deleniti porro iure voluptatem molestiae culpa, sit dolor sequi doloremque tempora.
-            </div>
+        <section>
+            <router-view></router-view>
         </section>
     </div>
 </template>
 
 <script>
-import tutorCard from '@/components/helperComponents/tutorCard.vue'
+import TutorCard from '@/components/TutorCard.vue'
 
 import { mapState, mapGetters } from 'vuex'
 
 export default {
     name: 'Tutors',
     components: {
-        'tutor-card': tutorCard
+        'tutor-card': TutorCard
     },
     computed: {
         ...mapState([

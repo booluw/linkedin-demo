@@ -1,9 +1,12 @@
 <template>
     <div class="page">
         <section class="section">
-            <h1>Hello from Create</h1>
+            <h1>Create the next big tutorial</h1>
             <form action="" method="" name="">
-                <div v-if="details.title.length >= 30">Stop it</div>
+                <div class="notif is-dangerous" v-if="details.title.length >= 30">
+                    <b>Stop</b>, maximum length of text reached.<br />
+                    Tutorial's title should not exceed 30 letters, including spaces.
+                </div>
                 <div class="input-group">
                     <label for="title" class="label with-btn">
                         Tutorial's Title
@@ -18,7 +21,7 @@
                 </div>
                 <div class="input-group">
                     <div class="label">Tutorial's Description</div>
-                    <textarea v-model="details.description" class="input"></textarea>
+                    <textarea v-model.lazy="details.description" class="input"></textarea>
                 </div>
                 <div class="notif is-warning" v-if="details.date.length >= 3">
                     Please note that, <b>Its adviced</b> to organise a single tutorial at most 3-times a week.
@@ -91,15 +94,21 @@
                 </div>
             </form>
         </section>
-        <section class="section">
-            <h3 class="snub">Live preview</h3>
+        <section class="preview">
+            <h3 class="snub">card preview</h3>
             <page-card v-bind:detail="details" />
+            <h3 class="snub">tutorial description</h3>
+            {{details.description}}
+            <h3 class="snub">tutorial level</h3>
+            {{details.level}}
+            <h3 class="snub">tutorial campus</h3>
+            {{details.campus}}
         </section>
     </div>
 </template>
 
 <script>
-import Card from "@/components/helperComponents/theCard.vue";
+import Card from "@/components/AppCard.vue";
 import { mapState } from 'vuex';
 
 export default {
@@ -165,8 +174,13 @@ export default {
 </script>
 
 <style scoped>
-.section .card {
+.preview {
+    margin: 0 2rem 0 0;
+    padding: 0 0;
+}
+section .card {
     width: 100%;
+    height: auto;
 }
 .input-group .material-icons {
     background-color: rgb(158, 158, 158);

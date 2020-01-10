@@ -22,9 +22,9 @@
          </header>
          <transition class="mobile" enter-active-class="animated slideInLeft faster" leave-active-class="animated slideOutLeft faster">
             <nav class="nav mobile" v-if="menuToggle">
-                <h2>
-                    tutera.tk
-                </h2>
+                <h3>
+                    tutera.tk: tutorials that matter.
+                </h3>
                 <router-link to="/explore">Explore</router-link>
                 <router-link to="/u">Tutors</router-link>
                 <router-link to="/bnb">BnB</router-link>
@@ -66,7 +66,7 @@ export default {
     display: flex;
     padding: 0 .5rem;
     background-color: white;
-    box-shadow: var(--boxShadow);
+    box-shadow: 0 0 5px 2px var(--subSubtile);
 }
 .nav.mobile {
     display: flex;
@@ -76,11 +76,12 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
+    height: 100%;
     margin: 4rem 0 0;
-    padding: .5rem .2rem;
-    background-color: rgb(102, 51, 153);
+    padding: 1rem .5rem;
+    background-color: var(--mainColor);
     box-shadow: 0 5px 10px 1px grey;
-    color: grey;
+    color: white;
     border-radius: 0 0 .3rem .3rem;
     z-index: 3;
 }
@@ -90,8 +91,8 @@ export default {
     color: var(--color);
     background-color: var(--bg);
     font-weight: normal;
-    margin: .15rem .1rem;
-    padding: .5rem 1rem;
+    margin: .15rem 0;
+    padding: .8rem .5rem;
     border: 1.5px solid var(--bg);
     border-radius: var(--borderRadius);
     transition: .3s ease-in-out;
@@ -173,7 +174,7 @@ a.cta {
         background-color: rgba(100, 149, 237,0.05);
     }
     input[type="search"]:focus {
-        box-shadow: 0 0 10px 1px var(--subColor);
+        box-shadow:0 0 5px 2px var(--subSubtile);
     }
 }
 input[name="menu-toggle"] {

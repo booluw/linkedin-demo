@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Header from "@/components/theHeader.vue";
+import Header from "@/components/AppHeader.vue";
 
 import { mapGetters, mapState } from 'vuex'
 
@@ -51,7 +51,7 @@ export default {
   --text: #575656;
   --headerText: #363636;
   --borderRadius: .3rem;
-  --boxShadow: 0 0 5px 3px grey;
+  --boxShadow:0 0 5px 2px var(--subSubtile);
 }
 body {
   color: var(--text);
@@ -62,6 +62,7 @@ body {
   font-family: 'Montserrat','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 .mobile {
     display: block;
@@ -349,7 +350,7 @@ Toast
   bottom: .5rem;
   right: 1rem;
   left: 1rem;
-  margin: 0 30vw;
+  margin: 0 10vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -440,11 +441,14 @@ hr {
     justify-content: space-between;
   }
   .page >*:first-child {
-      width: 63%;
+      width: 70%;
+      box-sizing: border-box;
   }
   .page > *:last-child {
-      width: 27%;
+      width: 30%;
       visibility: visible;
+      padding: 3.5rem 0 0;
+      margin: 2rem;
   }
 }
 
@@ -533,8 +537,8 @@ hr {
 .profile .links {
     display: flex;
     align-items: stretch;
-    justify-content: center;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     align-content: space-between;
     align-items: space-between;
 }
@@ -570,54 +574,60 @@ hr {
     margin-right: .5rem;
 }
 @media (min-width: 1200px) {
-.mobile {
-    display: none!important;
-}
-.desktop {
-    display: block;
-}
-.profile .__left {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: flex-start;
-    align-items: flex-start;
-}
-.img {
-    width: 35%;
-}
-.__img {
-    border-radius: .3rem;
-    height: 15rem;
-    width: 100%;
-    outline: none;
-    background-color: rgb(66, 75, 102);
-}
-.tabs {
-    width: 70%;
-    margin-left: 5rem;
-}
-.details {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: flex-start;
-    margin-left: 5rem;
-}
-.profile .__right {
-    display: flex;
-}
-.profile .__right .section {
-    width: 35%;
-}
-.profile .section {
-    padding: 2rem 0;
-}
-.text {
-    text-align: left;
-}
+  .mobile {
+      display: none!important;
+  }
+  .desktop {
+      display: block;
+  }
+  .profile .__left {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 0;
+  }
+  .img {
+      width: 35%;
+  }
+  .__img {
+      border-radius: .3rem;
+      height: 15rem;
+      width: 100%;
+      outline: none;
+      background-color: rgb(66, 75, 102);
+  }
+  .tabs {
+      width: 70%;
+      margin-left: 5rem;
+  }
+  .details {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: flex-start;
+      margin-left: 5rem;
+  }
+  .profile .__right {
+      display: flex;
+  }
+  .profile .__right .quote {
+      width: 35%;
+      padding: 0 0 0 1rem;
+      box-sizing: border-box;
+  }
+  .profile .section {
+      padding: 2rem 0;
+  }
+  .text {
+      text-align: left;
+  }
+  .toast {
+    margin: 0 30vw;
+  }
 }
 
 
