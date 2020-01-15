@@ -27,14 +27,14 @@ export default {
     margin: .2rem;
     padding: 0;
     color: var(--headerText);
-    background-color: rgba(100, 149, 237,.1);
+    background-color: var(--mainSubtile);
     border-radius: var(--borderRadius);
-    border: 1px solid rgba(100, 149, 237,.2);
+    border: 1px solid var(--mainSubtile);
     transition: .3s ease-in-out;
     cursor: pointer;
 }
 .small.card:hover  {
-    box-shadow: 0 0px 5px 3px rgba(100, 149, 237,.3);
+    box-shadow: 0 0px 5px 3px var(--mainSubtile);
 }
 .small.card .__image {
     padding: 5rem 2rem;
@@ -45,7 +45,7 @@ export default {
 }
 .small.card .__footer {
     padding: 1rem .5rem .2rem;
-    border-top: 1px solid rgba(100, 149, 237,.2);
+    border-top: 1px solid var(--mainSubtile);
 }
 .small.card .__hall {
     font-size: 1.2rem;
@@ -58,7 +58,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .small.card {
-        width: 30%;
+        width: 23%;
     }
 }
 </style>

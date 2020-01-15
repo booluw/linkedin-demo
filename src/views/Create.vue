@@ -45,28 +45,22 @@
                     <div class="input-group">
                         <div class="label">Tutorial's Level</div>
                         <select v-model="details.level" class="input">
-                            <option value="100">100</option>
-                            <option value="200">200</option>
-                            <option value="300">300</option>
-                            <option value="400">400</option>
-                            <option value="500">500</option>
+                            <template v-for="level in levels">
+                                <option :value="level" :key="level">{{level}}</option>
+                            </template>
                         </select>
                     </div>
                     <div class="input-group">
                         <label for="time" class="label">Tutorial's Time</label>
                         <select v-model="details.time" class="input">
-                            <option value="4:00pm">4:00 pm</option>
-                            <option value="4:30pm">4:30 pm</option>
-                            <option value="5:00pm">5:00 pm</option>
-                            <option value="5:30pm">5:30 pm</option>
-                            <option value="6:00pm">6:00 pm</option>
-                            <option value="6:30pm">6:30 pm</option>
-                            <option value="7:00pm">7:00 pm</option>
-                            <option value="7:30pm">7:30 pm</option>
-                            <option value="8:00pm">8:00 pm</option>
-                            <option value="8:30pm">8:30 pm</option>
-                            <option value="9:00pm">9:00 pm</option>
-                            <option value="9:30pm">9:30 pm</option>
+                            <option value="8:00hrs">8:00hrs</option>
+                            <template v-for="(i, index) in time">
+                                <option :value="`${i+8}:00hrs`" :key="`${i}+8`">{{i+8}}:00hrs</option>
+                            </template>
+                            <template v-for="(i, index) in time">
+                                <option :value="`${i+14}:00hrs`" :key="`${i}+14`">{{i+14}}:00hrs</option>
+                            </template>
+                            <option value="21:00hrs">21:00hrs</option>
                         </select>
                     </div>
                     <div class="input-group">
@@ -88,15 +82,19 @@
                         </select>
                     </div>
                 </div>
-                <div class="v-flex" style="padding: 0 0;justify-content: flex-end;">
-                    <button class="btn btn-link is-primary" style="text-transform: uppercase;" @click.prevent="saveTutorial()">Launch this tutorial</button>
-                    <button type="reset" class="btn btn-small" style="margin: .5rem 0;text-transform: uppercase;">Revert</button>
+                <br />
+                <small>
+                    By clicking 'Launch', you agree to comply with the rules and regulations guilding contents and information on this site.
+                </small>
+                <div class="v-flex" style="justify-content: flex-end;width: 100%;padding: 2rem 0 0;">
+                    <button class="btn is-default" @click.prevent="saveTutorial()">Launch</button>
+                    <button type="reset" class="btn btn-small">Revert</button>
                 </div>
             </form>
         </section>
         <section class="preview">
             <h3 class="snub">card preview</h3>
-            <page-card v-bind:detail="details" />
+            <page-card v-bind:detail="details" commentBtn="no"/>
             <h3 class="snub">tutorial description</h3>
             {{details.description}}
             <h3 class="snub">tutorial level</h3>
@@ -119,7 +117,9 @@ export default {
     computed: {
         ...mapState([
             'locations',
-            'tutorials'
+            'tutorials',
+            'time',
+            'levels'
         ])
     },
     watch: {

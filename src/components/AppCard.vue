@@ -33,10 +33,6 @@
                 <button class="__btn is-selected" @click="remove_tutorial()" v-if="isSelected">Attending</button>
                 <button class="__btn" @click="add_tutorial()" v-if="!isSelected">Attend</button>
             </div>
-            <router-link :to="'/'+this.detail.tutor+'/'+this.detail.title" v-else>
-                <i class="material-icons">comment</i>
-                22
-            </router-link>
         </div>
     </div>
 </template>
@@ -159,9 +155,11 @@ export default {
 }
 .__author {
     font-size: 1rem;
+    text-shadow: 0 0 1px black;
 }
 .__location {
     color: var(--subColor);
+    text-shadow: 0 0 1px grey;
 }
 .material-icons {
     color: rgb(151, 148, 148);
@@ -175,7 +173,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .card {
-        width: 30%;
+        width: 23%;
     }
 }
 </style>

@@ -5,11 +5,9 @@
       <div class="input-group">
         <label for="level" class="label">Level</label>
         <select name="level" id="level" class="input">
-          <option value="100">100</option>
-          <option value="200">200</option>
-          <option value="300">300</option>
-          <option value="400">400</option>
-          <option value="500">500</option>
+          <template v-for="level in levels">
+            <option :value="level" :key="level">{{level}}</option>
+          </template>
         </select>
       </div>
       <div class="input-group">
@@ -110,7 +108,8 @@ export default {
   computed: {
     ...mapState([
       'tutorials',
-      'locations'
+      'locations',
+      'levels'
     ])
   },
   data() {
@@ -152,6 +151,7 @@ export default {
 }
 .section {
   display: flex;
+  position: relative;
   flex-direction: column;
   padding: 2rem 0 2rem .5rem;
 }

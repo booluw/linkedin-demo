@@ -601,7 +601,7 @@
             </tr>
         </table>
         <div class="h-flex" style="justify-content: flex-end;">
-            <button class="btn btn-link is-primary" @click="saveTT()">Save</button>
+            <button class="btn btn-link is-default" @click="saveTT()" style="width: 20%">Save</button>
             <button class="btn btn-small" @click="clearAll()">Clear all</button>
         </div>
     </section>

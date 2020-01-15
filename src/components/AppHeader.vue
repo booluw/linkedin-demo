@@ -10,14 +10,14 @@
                 <img class="logo" alt="image of an ink pen with 'tutera'" src="../assets/logo.png" title="Click to go home" />
             </router-link>
             <div style="display: flex;justify-content: flex-end;" class="mobile">
-                <router-link to="/login" class="cta">Login</router-link>
+                <router-link to="/join" class="cta">Join</router-link>
             </div>
             <input type="search" class="desktop" />
             <nav class="nav desktop">
                 <router-link to="/explore">Explore</router-link>
+                <router-link to="/create">Create</router-link>
                 <router-link to="/u">Tutors</router-link>
-                <router-link to="/bnb">BnB</router-link>
-                <router-link to="/login" class="cta">Login</router-link>
+                <router-link to="/join" class="cta">Join</router-link>
             </nav>
          </header>
          <transition class="mobile" enter-active-class="animated slideInLeft faster" leave-active-class="animated slideOutLeft faster">
@@ -26,8 +26,8 @@
                     tutera.tk: tutorials that matter.
                 </h3>
                 <router-link to="/explore">Explore</router-link>
+                <router-link to="/create">Create</router-link>
                 <router-link to="/u">Tutors</router-link>
-                <router-link to="/bnb">BnB</router-link>
             </nav>
         </transition>
     </div>
@@ -108,14 +108,15 @@ a.cta {
     border-radius: var(--borderRadius);
     transition: .3s ease-in-out;
 }
-    a.cta:hover {
-        --color: white;
-        --bg: var(--cta);
-    }
 .nav a:hover, .header .router-link-active:not(.logo) {
     background-color: var(--subColor);
     color: white;
 }
+a.cta:hover,.header .cta.router-link-active {
+        --color: white;
+        --bg: var(--cta);
+        background-color: var(--cta);
+    }
 @supports (display: grid){
     .header {
         display: grid;

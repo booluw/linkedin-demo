@@ -195,6 +195,8 @@ export default new Vuex.Store({
         'url': '://mcb.hash',
       }
     ],
+    time: [1,2,3,4,5,6],
+    levels: [100,200,300,400,500],
     quiz: [
       {
         title: 'CPT 311',

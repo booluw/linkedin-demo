@@ -6,7 +6,7 @@
     </transition>
     <div style="padding: 3rem 0;"></div>
     <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown faster">
-      <router-link to="/checkout" class="toast" v-if="selectedTotal && $route.path !='/checkout'">
+      <router-link to="/checkout" class="toast" v-if="selectedTotal && ($route.path !='/checkout' && $route.path !='/create')">
         <p>
           {{selected[selected.length-1].title}} added
         </p>
@@ -84,6 +84,9 @@ body {
 a {
   text-decoration: none;
 }
+  .underlined {
+    color: cornflowerblue
+  }
   .subtile-link {
     display: inline-flex;
     justify-content:center;
@@ -141,13 +144,16 @@ img.logo {
   .h-flex > * {
     flex-shrink: 0; 
   }
+  .h-flex > .card:not(.small) {
+    width: 30%!important;
+  }
 .v-flex {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
   .v-flex > * {
-    width: 100%!important;
+    width: 80%!important;
   }
 /*======================
           AddOn
@@ -205,6 +211,19 @@ img.logo {
   .btn.btn-small {
     padding: 1rem;
   }
+  .btn.is-default {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 8.5rem;
+    width: 100%;
+    background-color: var(--mainColor);
+    color: white;
+    box-shadow: 0 0 3px 5px var(--mainSubtile);
+    text-transform: uppercase;
+}
+ .btn.is-default:hover {
+    box-shadow: none;
+}
   .btn.is-dangerous,.btn.is-dangerous:hover  {
     background-color: crimson;
     color: white;
@@ -360,9 +379,11 @@ Toast
   box-shadow: 0 0 2px 5px rgba(48, 46, 46, .3);
   border-radius: var(--borderRadius);
   transition: .2s ease-in-out;
+  animation: bounce 3s infinite;
 }
 .toast:hover {
   bottom: 1rem;
+  animation: none;
 }
 .toast .material-icons {
   vertical-align: bottom;

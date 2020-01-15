@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Create from './views/Create.vue'
-import UserProfile from './views/Explore.vue'
+import UserProfile from './views/userProfile.vue'
 
 Vue.use(Router)
 /*
@@ -87,6 +88,16 @@ export default new Router({
       path: '/checkout',
       name: 'checkout',
       component: () => import('./views/checkout.vue')
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('./views/signin.vue')
+    },
+    {
+      path: '/join',
+      name: 'join',
+      component: () => import('./views/join.vue')
     },
     {
       /*
