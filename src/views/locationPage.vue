@@ -16,8 +16,12 @@
                             {{location.decription||"Oops! This location currently doesn't have a description, why not add one."}}
                         </div>
                         <div class="section" style="box-shadow: none;padding: 0;margin: 3.5rem 0 0;">
-                            <a href="#" class="__btn">Get directions</a>
+                            <a href="#" class="__btn">
+                                Get directions &nbsp;&nbsp;
+                                <i class="material-icons">directions</i>
+                            </a>
                         </div>
+                        <br /><br />
                     </div>
                 </div>
                 <div class="__right" style="align-items: flex-start;">
