@@ -91,7 +91,6 @@ export default {
             'removeTutorial'
         ]),
         changePage: function() {
-            console.log('ChangePage here');
             this.$router.push({name: 'tutorialPage',params: {title: `${this.detail.title}`, tutor: `${this.detail.tutor}`}});
         },
         checker: function() {

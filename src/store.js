@@ -239,7 +239,34 @@ export default new Vuex.Store({
           }
         ]
       }
-    ]
+    ],
+    users: [
+      {
+        'name': 'Jayson',
+        'email': 'jaycewap@gmail.com',
+        'type': 'Admin',
+        'password': 'jabla'
+      },
+      {
+        'name': 'Chinedu',
+        'email': 'Chinedu@gmail.com',
+        'type': 'Tuteran',
+        'password': 'tambila'
+      },
+      {
+        'name': 'Excel',
+        'type': 'Volunteer',
+        'email': 'Excel@tutera.ng',
+        'password': '1222'
+      },
+      {
+        'name': 'Bonboi',
+        'type': 'Tuterite',
+        'email': 'jablow@tutera.ng',
+        'password': '1234'
+      }
+    ],
+    authenticated: false,
   },
   mutations: {
     ADD_TUTORIAL: (state, newContent) => {
@@ -253,6 +280,9 @@ export default new Vuex.Store({
     },
     REMOVE_ALL: (state) => {
       state.selected = [];
+    },
+    setAuthentication(state, status) {
+      state.authenticated = status;
     }
   },
   actions: {

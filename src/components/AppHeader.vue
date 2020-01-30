@@ -10,14 +10,16 @@
                 <img class="logo" alt="image of an ink pen with 'tutera'" src="../assets/logo.png" title="Click to go home" />
             </router-link>
             <div style="display: flex;justify-content: flex-end;" class="mobile">
-                <router-link to="/join" class="cta">Join</router-link>
+                <router-link to="/join" class="cta" v-if="!($store.state.authenticated)">Join</router-link>
+                <router-link to="/me" class="cta" v-else>Profile</router-link>
             </div>
             <input type="search" class="desktop" />
             <nav class="nav desktop">
                 <router-link to="/explore">Explore</router-link>
                 <router-link to="/create">Create</router-link>
                 <router-link to="/u">Tutors</router-link>
-                <router-link to="/join" class="cta">Join</router-link>
+                <router-link to="/join" class="cta" v-if="!($store.state.authenticated)">Join</router-link>
+                <router-link to="/me" class="cta" v-else>Profile</router-link> 
             </nav>
          </header>
          <transition class="mobile" enter-active-class="animated slideInLeft faster" leave-active-class="animated slideOutLeft faster">

@@ -35,6 +35,12 @@ export default {
       ...mapState ([
         'selected'
       ])
+    },
+    metaInfo: {
+      //Default title
+      title: 'Attend tutorials, Organise tutorials all on Tutera.',
+      //Title template, %s is replaced with each view's template.
+      titleTemplate: '%s || Tutera'
     }
 }
 </script>
@@ -220,6 +226,10 @@ img.logo {
     color: white;
     box-shadow: 0 0 3px 5px var(--mainSubtile);
     text-transform: uppercase;
+}
+.btn.is-default[disabled] {
+  background-color: lightgrey;
+  color: grey;
 }
  .btn.is-default:hover {
     box-shadow: none;
@@ -672,5 +682,114 @@ hr {
   input {
     color: white;
   }
+}
+
+
+
+.is-centered {
+    text-align: center;
+    position: relative;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 1rem 5rem;
+}
+.input-block {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 1rem;
+    width: 100%;
+}
+.input-block .label {
+    display: inline;
+    text-align: left;
+    font-weight: bold;
+    color: lightgrey;
+    padding: .25rem .5rem;
+    background-color: var(--mainColor);
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+}
+.input-block .input {
+    padding: .5rem .5rem;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    border: none;
+    background-color: var(--mainSubtile);
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    border: .2rem solid var(--mainColor);
+}
+.input-block.radio {
+    justify-content: center;
+}
+.input-block.radio input[type="radio"] {
+    display: none;
+}
+.input-block.radio .__circle {
+    --bg: var(--mainSubtile);
+    box-sizing: border-box;
+    display: block;
+    padding: .5rem;
+    width: 1rem;
+    background-color: var(--bg);
+    border-radius: 2rem;
+    border: .12rem solid var(--mainColor);
+    box-shadow: 0 0 1px .2rem var(--bg);
+    transition: .3s ease-in-out;
+}
+.input-block.radio .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--mainSubtile);
+    padding: 1rem .5rem .5rem;
+    margin: 0 .55rem;
+    border-radius: var(--borderRadius);
+    height: 100%;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+.input-block.radio input[type="radio"]:checked + .block,.input-block.radio .block:hover {
+    background-color: rgb(180, 114, 250);
+    color: var(--headerText);
+    box-shadow: 0 0 10px 1px var(--mainColor);
+}
+.input-block.radio input[type="radio"]:checked + .block .__circle {
+    --bg: var(--mainColor);
+    border-color: rgb(180, 114, 250);
+}
+.input-block.radio .block .__main-text {
+    padding: 0;
+    margin: .7rem 0;
+    font-size: 1.1rem;
+    text-shadow: 0 0 2px grey;
+}
+.input-block.radio .block .__supporting-text {
+    padding: 0;
+    margin: 0 0 .75rem;
+    color: var(--headerText);
+    text-shadow: 0 0 .5px grey;
+}
+.slab {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: var(--subColor);
+    width: 100%;
+    height: 20%;
+    z-index: -1;
+    -webkit-clip-path: polygon(100% 13%, 0% 100%, 100% 100%);
+    clip-path: polygon(100% 13%, 0% 100%, 100% 100%);
+    border-radius: inherit;
+}
+.slab.first {
+    top: 0;
+    -webkit-clip-path: polygon(0 87%, 0 0, 100% 0);
+    clip-path: polygon(0 87%, 0 0, 100% 0);
 }
 </style>

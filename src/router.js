@@ -5,6 +5,10 @@ import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Create from './views/Create.vue'
 import UserProfile from './views/userProfile.vue'
+/*
+Store is imported to check the 'authenticated' state.
+*/
+import store from './store'
 
 Vue.use(Router)
 /*
@@ -87,7 +91,14 @@ export default new Router({
       */
       path: '/checkout',
       name: 'checkout',
-      component: () => import('./views/checkout.vue')
+      component: () => import('./views/checkout.vue'),
+      beforeEnter: (to, from, next) => {
+        if(store.state.authenticated == false) {
+          next(false);
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/signin',

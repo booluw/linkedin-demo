@@ -8,18 +8,19 @@
                 And we would be happy to have you onboard, 
                 let's keep you attending all those tutorials that matter.
             </p>
+            <div class="notif is-dangerous" v-html="warning" v-if="warning.length != 0"></div>
             <form action="" class="form" @submit.prevent="submit()">
                 <div class="input-block">
                     <label for="username" class="label">username</label>
-                    <input type="text" name="username" v-model="user.name" class="input" />
+                    <input type="text" name="username" v-model.lazy="user.name" class="input"  required/>
                 </div>
                 <div class="input-block">
                     <label for="email" class="label">email</label>
-                    <input type="email" name="email" v-model="user.email" class="input" />
+                    <input type="email" name="email" v-model="user.email" class="input"  required/>
                 </div>
                 <div class="input-block">
                     <label for="password" class="label">password</label>
-                    <input type="password" name="password" v-model="user.password" class="input" />
+                    <input type="password" name="password" v-model="user.password" class="input" required/>
                 </div>
                 <h3 class="snub" style="padding: 0;">Account type</h3>
                 <small>You can change anytime, for free.</small><br />
@@ -63,7 +64,7 @@
                 </small>
                 <div class="v-flex" style="justify-content: flex-end;align-items: center; width: 100%;">
                     <p class="helperText" style="text-align: left;">Already have an account? <router-link to="/signin" class="subtile-link">Sign In</router-link></p>
-                    <button class="btn is-default" style="padding: 1.5rem 2rem;">Join</button>
+                    <button class="btn is-default" style="padding: 1.5rem 2rem;" :disabled="nameLength">Join</button>
                 </div>
             </form>
             <div class="slab"></div>
@@ -77,129 +78,53 @@
 <script>
 export default {
     name: 'join',
+    computed: {
+        nameLength: function() {
+            if (this.user.name.length < 6) {
+                return 'Please length is less than 6 letters.'
+            } else {
+                return
+            }
+        }
+    },
     data() {
         return {
             user: {
                 name: '',
                 password: '',
                 type: 'tuterite'
-            }
+            },
+            warning: ''
         }
     },
     methods: {
         submit: function() {
-            alert(this.user);
+            let check = this.$store.state.users.find(eachUser => eachUser.name == this.user.name);
+            if(check) {
+                //User.name already in database, notify user to try another.
+                this.warning = `Please an account is already registered with <b>${this.user.name}</b>, choose another.`;
+            } else {
+                //New user, set auth and send to next page.
+                this.$store.commit('setAuthentication', true);
+                this.$router.replace('/checkout');
+            }
+        }
+    },
+    metaInfo() {
+        return {
+            title: 'SignIn to your Tutera account.',
+            meta: [
+                {   vmid:'description',
+                    name: 'description',
+                    content: 'Sign In to your tutera account and start attending the best tutorials that there is.'
+                },
+                {
+                    vmid: 'keyword',
+                    name: 'keyword',
+                    content: 'Tutera, Join Tutera, Tutorials, Tutorials in FUTMinna, FUTMinna tutorials'
+                }
+            ]
         }
     }
 }
 </script>
-<style>
-.is-centered {
-    text-align: center;
-    position: relative;
-}
-.form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
-    padding: 1rem 5rem;
-}
-.input-block {
-    display: flex;
-    flex-direction: column;
-    margin: 0 0 1rem;
-    width: 100%;
-}
-.input-block .label {
-    display: inline;
-    text-align: left;
-    font-weight: bold;
-    color: lightgrey;
-    padding: .25rem .5rem;
-    background-color: var(--mainColor);
-    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
-}
-.input-block .input {
-    padding: .5rem .5rem;
-    font-size: 1.1rem;
-    font-family: 'Montserrat', sans-serif;
-    outline: none;
-    border: none;
-    background-color: var(--mainSubtile);
-    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-    border: .2rem solid var(--mainColor);
-}
-.input-block.radio {
-    justify-content: center;
-}
-.input-block.radio input[type="radio"] {
-    display: none;
-}
-.input-block.radio .__circle {
-    --bg: var(--mainSubtile);
-    box-sizing: border-box;
-    display: block;
-    padding: .5rem;
-    width: 1rem;
-    background-color: var(--bg);
-    border-radius: 2rem;
-    border: .12rem solid var(--mainColor);
-    box-shadow: 0 0 1px .2rem var(--bg);
-    transition: .3s ease-in-out;
-}
-.input-block.radio .block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--mainSubtile);
-    padding: 1rem .5rem .5rem;
-    margin: 0 .55rem;
-    border-radius: var(--borderRadius);
-    height: 100%;
-    cursor: pointer;
-    transition: .3s ease-in-out;
-}
-.input-block.radio input[type="radio"]:checked + .block,.input-block.radio .block:hover {
-    background-color: rgb(180, 114, 250);
-    color: var(--headerText);
-    box-shadow: 0 0 10px 1px var(--mainColor);
-}
-.input-block.radio input[type="radio"]:checked + .block .__circle {
-    --bg: var(--mainColor);
-    border-color: rgb(180, 114, 250);
-}
-.input-block.radio .block .__main-text {
-    padding: 0;
-    margin: .7rem 0;
-    font-size: 1.1rem;
-    text-shadow: 0 0 2px grey;
-}
-.input-block.radio .block .__supporting-text {
-    padding: 0;
-    margin: 0 0 .75rem;
-    color: var(--headerText);
-    text-shadow: 0 0 .5px grey;
-}
-.slab {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: var(--subColor);
-    width: 100%;
-    height: 20%;
-    z-index: -1;
-    -webkit-clip-path: polygon(100% 13%, 0% 100%, 100% 100%);
-    clip-path: polygon(100% 13%, 0% 100%, 100% 100%);
-    border-radius: inherit;
-}
-.slab.first {
-    top: 0;
-    -webkit-clip-path: polygon(0 87%, 0 0, 100% 0);
-    clip-path: polygon(0 87%, 0 0, 100% 0);
-}
-@media (min-width: 1200px) {
-}
-</style>

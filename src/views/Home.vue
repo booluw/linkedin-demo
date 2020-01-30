@@ -112,10 +112,8 @@ export default {
       'levels'
     ])
   },
-  data() {
-    return {
-      
-    }
+  metaInfo: {
+    //Home does not have t own title, since BaseTitle is enough 
   }
 }
 </script>
