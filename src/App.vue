@@ -6,7 +6,7 @@
     </transition>
     <div style="padding: 3rem 0;"></div>
     <transition enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown faster">
-      <router-link to="/checkout" class="toast" v-if="selectedTotal && ($route.path !='/checkout' && $route.path !='/create')">
+      <router-link to="/checkout" class="toast" v-if="selectedTotal && ($route.path !='/checkout' && $route.path !='/create' && $route.path !='/')">
         <p>
           {{selected[selected.length-1].title}} added
         </p>
@@ -40,7 +40,7 @@ export default {
       //Default title
       title: 'Attend tutorials, Organise tutorials all on Tutera.',
       //Title template, %s is replaced with each view's template.
-      titleTemplate: '%s || Tutera'
+      titleTemplate: '%s | Tutera'
     }
 }
 </script>

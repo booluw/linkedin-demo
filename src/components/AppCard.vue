@@ -172,7 +172,7 @@ export default {
 }
 @media (min-width: 1200px) {
     .card {
-        width: 23%;
+        width: 20%;
     }
 }
 </style>

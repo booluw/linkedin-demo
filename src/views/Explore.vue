@@ -47,6 +47,22 @@ export default {
         ...mapGetters ([
             'selectedTotal'
         ])
+    },
+    metaInfo() {
+        return {
+            title: 'Explore tutorials',
+            meta: [
+                {   vmid:'description',
+                    name: 'description',
+                    content: 'Organise and attend tutorials. Every course, every department and in every location in FUT Minna.'
+                },
+                {
+                    vmid: 'keyword',
+                    name: 'keyword',
+                    content: 'Tutera, Join Tutera, Tutorials, Tutorials in FUTMinna, FUTMinna tutorials'
+                }
+            ]
+        }
     }
 }
 </script>

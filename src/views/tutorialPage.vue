@@ -35,20 +35,20 @@
                         <br />
                         <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut faster">
                             <div class="links" v-if="!isSelected">
-                                <a href="" class="subtile-link is-default" @click.prevent="add_tutorial()" v-if="isSelected == false">
+                                <button class="subtile-link is-default" @click.prevent="add_tutorial()" v-if="isSelected == false">
                                     <i class="material-icons">star</i>Attend
-                                </a>
-                                <a href="" class="subtile-link is-disabled" v-if="!isSelected">
+                                </button>
+                                <button class="subtile-link is-disabled" v-if="!isSelected">
                                     <i class="material-icons">warning</i>
                                     Report Tutorial
-                                </a>
+                                </button>
                             </div>
                         </transition>
                         <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut faster">
                             <div class="links" v-if="isSelected">
-                                <a href="" class="subtile-link is-dangerous" @click.prevent="remove_tutorial()">
+                                <button class="subtile-link is-dangerous" @click.prevent="remove_tutorial()">
                                     <i class="material-icons is-not">star</i>Cancel Attend
-                                </a>
+                                </button>
                                 <router-link :to="`${tutorial.title}/quiz`" class="subtile-link is-successful">
                                     <i class="material-icons">question_answer</i>
                                     Take Quiz
@@ -165,6 +165,23 @@ export default {
             this.removeTutorial(this.tutorial)
             this.isSelected = false
             console.log(this.isSelected)
+        }
+    },
+    metaInfo() {
+        let tutorial = this.tutorial;
+        return {
+            title: `Tutorial: ${tutorial.title} by ${tutorial.tutor}`,
+            meta: [
+                {   vmid:'description',
+                    name: 'description',
+                    content: `${tutorial.description}`
+                },
+                {
+                    vmid: 'keyword',
+                    name: 'keyword',
+                    content: `${tutorial.title}, ${tutorial.tutor}, Tutorials, FUTMinna,FUTMinna tutorials, Tutorials in ${tutorial.location}, Tutorials in ${tutorial.campus}`
+                }
+            ]
         }
     }
 }

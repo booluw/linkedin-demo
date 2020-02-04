@@ -138,6 +138,23 @@ export default {
             this.tutorTutorials = this.tutorials.filter(i => (i.tutor == this.$route.params.tutor));
             //this.tutor = this.tutors.find(i => (i.name ==this.tutorial.tutor));           
         },
+    },
+    metaInfo() {
+        let tutor = this.tutor;
+        return {
+            title: `@${tutor.name} (${tutor.realName||tutor.dept}) on Tutera`,
+            meta: [
+                {   vmid:'description',
+                    name: 'description',
+                    content: `${tutor.quote}`
+                },
+                {
+                    vmid: 'keyword',
+                    name: 'keyword',
+                    content: `${tutor.name}, ${tutor.realName}, Tutor, FUTMinna,FUTMinna tutors, Tutors in ${tutor.dept}, Tutors in ${tutor.level}`
+                }
+            ]
+        }
     }
 }
 </script>

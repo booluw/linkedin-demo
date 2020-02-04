@@ -1,10 +1,12 @@
 <template>
     <div>
         <h1>Hello World</h1>
+        {{users}}
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     name: 'UserProfile',
     data() {
@@ -12,11 +14,10 @@ export default {
 
         }
     },
-    mounted() {
-
-    },
-    watch: {
-
+    computed: {
+        ...mapState([
+            'users'
+        ])
     },
     methods: {
 

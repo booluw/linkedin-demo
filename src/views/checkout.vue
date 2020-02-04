@@ -1,601 +1,155 @@
 <template>
     <section class="section">
         <h1>Tutorials you want to attend</h1>
-        <div class="notif is-warning">
-            <b>Please note!</b> This timetable feature is still in development, might not be perfect in its display.
-        </div>
         <table class="timetable">
-            <tr class="__time">
-                <td>Day/Time</td>
-                <td>12:30pm</td>
-                <td>1:30pm</td>
-                <td>2:30pm</td>
-                <td>3:30pm</td>
-                <td>4:30pm</td>
-                <td>5:30pm</td>
-                <td>6:30pm</td>
-                <td>7:30pm</td>
-                <td>8:30pm</td>
-                <td>9:30pm</td>
-            </tr>
             <tr>
-                <td class="__day">Sundays</td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in sundayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
+                <th>
+                    <td class="__time">Sunday</td>
+                </th>
+                <th>
+                    <td class="__time">Monday</td>
+                </th>
+                <th>
+                    <td class="__time">Tuesday</td>
+                </th>
+                <th>
+                    <td class="__time">Wednesday</td>
+                </th>
+                <th>
+                    <td class="__time">Thursday</td>
+                </th>
+                <th>
+                    <td class="__time">Friday</td>
+                </th>
+                <th>
+                    <td class="__time">Saturday</td>
+                </th>
             </tr>
-            <tr>
-                <td class="__day">Mondays</td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+            <tr style="vertical-align: top;">
+                <td>
+                    <template v-for="(tutorials, index) in sundayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in mondayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in tuesdayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in mondayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-            </tr>
-            <tr>
-                <td class="__day">Tuesdays</td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in wednesdayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in thursdayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in fridayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <div class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </div>
+                        </div>
                     </template>
                 </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in tuesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-            </tr>
-            <tr>
-                <td class="__day">Wednesdays</td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in wednesdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-            </tr>
-            <tr>
-                <td class="__day">Thursdays</td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in thursdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-            </tr>
-            <tr>
-                <td class="__day">Fridays</td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in fridayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-            </tr>
-            <tr>
-                <td class="__day">Saturdays</td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='12:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='1:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='2:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='3:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='4:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='5:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='6:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='7:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='8:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
-                    </template>
-                </td>
-                <td class="__class" v-for="(tutorial, index) in saturdayTutorials" :key="index">
-                    <template v-if="tutorial.time =='9:30pm'">
-                        {{tutorial.title}}
-                    </template>
-                    <template v-else>
-                        Free
+                <td>
+                    <template v-for="(tutorials, index) in saturdayTutorials">
+                        <div class="plate-container" :key="index">
+                            <div class="plate">
+                                <div @click="changePage(`/explore/${tutorials.tutor}/${tutorials.title}`)">
+                                    <b>{{tutorials.title}}</b>
+                                    <br />
+                                    <small>
+                                        <b>{{tutorials.time}}</b>,
+                                        <b class="is-faint">{{tutorials.location}}</b></small>
+                                </div>
+                                <button class="remove-btn" @click="deleteTutorial(tutorials)">
+                                    <i class="material-icons">close</i>
+                                </button>
+                            </div>
+                        </div>
                     </template>
                 </td>
             </tr>
@@ -639,23 +193,27 @@ export default {
             return this.selected.filter(tutorial => (tutorial.date.includes('Saturdays')));
         },
     },
-    mounted() {
-
-    },
     methods: {
         ...mapActions([
-            'remove_all'
+            'remove_all',
+            'removeTutorial'
         ]),
         clearAll: function() {
             let action = confirm("Are you sure you want to 'CLEAR ALL', this would delete all your marked tutorials?");
             if (action) {
                 this.remove_all();
-                this.$router.push('/explore');
+                //this.$router.push('/explore');
             }
         },
         saveTT: function() {
             alert('saved');
             this.$router.push('/tt');
+        },
+        changePage: function(url) {
+            this.$router.push(url);
+        },
+        deleteTutorial: function(t) {
+            this.removeTutorial(t);
         }
 
     }
@@ -665,17 +223,70 @@ export default {
 <style>
 .timetable {
     display: block;
-    padding: 1rem .5rem;
+    padding: 1rem 0;
+    overflow: auto;
 }
-.timetable tr:first-child, .timetable td:first-child {
-    font-weight: bold;
+.__time {
     background-color: var(--mainColor);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    min-width: 13.5vw;
 }
-.timetable tr:first-child td {
-    padding: .2rem .1rem;
+.plate {
+    box-sizing: border-box;
+    height: 4.2rem;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    border-radius: var(--borderRadius);
+    background-color: var(--subSubtile);
+    margin: .5rem .2rem;
+    border: .15rem solid var(--subSubtile);
+    cursor: pointer;
+    justify-content: space-between;
+    transition: .3s ease-in;
 }
-.timetable tr:not(:first-child) td:not(:first-child) {
-    background-color: var(--mainSubtile);
+.plate:hover {
+    box-shadow: 0 0 5px 2px var(--subColor);
+}
+.plate div {
+    padding: .2rem .5rem;
+    width: 80%;
+}
+.plate div > b {
+ text-shadow: 0 0 1px black;
+}
+.plate .is-faint {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.remove-btn {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: .8;
+    background-color: crimson;
+    color: white;
+    border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+    cursor: pointer;
+}
+.plate:hover .remove-btn {
+    display: flex;
+    visibility: visible;
+    outline: none;
+    box-shadow: none;
+}
+.remove-btn:hover {
+    opacity: 1;
+}
+
+.is-faint {
+    color: rgba(0,0,0,0.5);
 }
 </style>

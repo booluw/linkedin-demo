@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import Explore from './views/Explore.vue'
 import Create from './views/Create.vue'
 import UserProfile from './views/userProfile.vue'
+import error404 from './views/error404.vue'
 /*
 Store is imported to check the 'authenticated' state.
 */
@@ -18,8 +19,6 @@ Vue.use(Router)
   =====> Create
   =====> Profile page
   =====> Settings
-  =====> BnB home
-  =====> BnB explore
 */
 
 
@@ -49,7 +48,26 @@ export default new Router({
     {
       path: '/me',
       name: 'profilePage',
-      component: UserProfile
+      component: UserProfile,
+      beforeEnter: (to, from, next) => {
+        if(store.state.authenticated == false) {
+          next(false);
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: UserProfile,
+      beforeEnter: (to, from, next) => {
+        if(store.state.authenticated == false) {
+          next(false);
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/u',
@@ -92,13 +110,6 @@ export default new Router({
       path: '/checkout',
       name: 'checkout',
       component: () => import('./views/checkout.vue'),
-      beforeEnter: (to, from, next) => {
-        if(store.state.authenticated == false) {
-          next(false);
-        } else {
-          next();
-        }
-      }
     },
     {
       path: '/signin',
@@ -120,7 +131,14 @@ export default new Router({
       */
       path: '/tt',
       name: 'timeTable',
-      component: () => import('./views/checkout.vue')
+      component: () => import('./views/checkout.vue'),
+      beforeEnter: (to, from, next) => {
+        if(store.state.authenticated == false) {
+          next(false);
+        } else {
+          next();
+        }
+      }
     },
     {
       /*
@@ -131,6 +149,11 @@ export default new Router({
       path: '/tt/:timetableID',
       name: 'sharedTimeTable',
       component: () => import('./views/checkout.vue')
+    },
+    {
+      path: '/*',
+      name: 'error404',
+      component: error404
     }
   ],
   scrollBehaviour (to, from, savedPosition) {

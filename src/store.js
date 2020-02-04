@@ -67,7 +67,7 @@ export default new Vuex.Store({
       },
       {
         'date':['Saturdays', 'Fridays'],
-        'time':'4:00pm',
+        'time':'4:30pm',
         'title':'CIT 315',
         'tutor':'Ojoanache',
         'location':'NLR 3',
