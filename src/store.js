@@ -15,7 +15,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    selected : [],
+    authenticated: false, //bool to check if user is logged in.
+    continuePage: '/explore', //string to send user to next page in router.
+    selected: [], //array to store selected tutorial.
+    thisUser: {}, //obj to store infos of this current logged user.
     tutorials: [
       {
         'date':['Sundays'],
@@ -265,8 +268,7 @@ export default new Vuex.Store({
         'email': 'jablow@tutera.ng',
         'password': '1234'
       }
-    ],
-    authenticated: false,
+    ]
   },
   mutations: {
     ADD_TUTORIAL: (state, newContent) => {
@@ -281,8 +283,9 @@ export default new Vuex.Store({
     REMOVE_ALL: (state) => {
       state.selected = [];
     },
-    setAuthentication(state, status) {
+    setAuthentication(state, status, user) {
       state.authenticated = status;
+      //state.thisUser = state.users.find(eachUser => eachUser.email == user.email);
     }
   },
   actions: {

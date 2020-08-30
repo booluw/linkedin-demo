@@ -2,25 +2,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Explore from './views/Explore.vue'
-import Create from './views/Create.vue'
-import UserProfile from './views/userProfile.vue'
-import error404 from './views/error404.vue'
 /*
 Store is imported to check the 'authenticated' state.
 */
 import store from './store'
 
 Vue.use(Router)
-/*
-  The user is redirected to the notification page when he logs in.
-  VIEWS NOT LAZY-LOADED:
-  =====> Explore
-  =====> Create
-  =====> Profile page
-  =====> Settings
-*/
-
 
 export default new Router({
   mode: 'history',
@@ -30,130 +17,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/explore',
-      name: 'explore',
-      component: Explore,
-      alias: '/tutorials'
-    },
-    {
-      /*
-      PROTECTED VIEW. Users can create tutorials.
-      */
-      path: '/create',
-      name: 'create',
-      component: Create
-    },
-    {
-      path: '/me',
-      name: 'profilePage',
-      component: UserProfile,
-      beforeEnter: (to, from, next) => {
-        if(store.state.authenticated == false) {
-          next(false);
-        } else {
-          next();
-        }
-      }
-    },
-    {
-      path: '/settings',
-      name: 'settings',
-      component: UserProfile,
-      beforeEnter: (to, from, next) => {
-        if(store.state.authenticated == false) {
-          next(false);
-        } else {
-          next();
-        }
-      }
-    },
-    {
-      path: '/u',
-      name: 'tutors',
-      component: () => import('./views/Tutors.vue'),
-      alias: '/tutors'
-    },
-    {
-      path: '/u/:tutor',
-      name: 'tutorPage',
-      component: () => import('./views/tutorPage.vue')
-    },
-    {
-      path: '/locations',
-      name: 'locations',
-      component: () => import('./views/locations.vue')
-    },
-    {
-      path: '/locations/:location',
-      name: 'locationPage',
-      component: () => import('./views/locationPage.vue')
-    },
-    {
-      path: '/explore/:tutor/:title',
-      name: 'tutorialPage',
-      component: () => import('./views/tutorialPage.vue')
-    },
-    {
-      path: '/explore/:tutor/:title/quiz',
-      name: 'quizPage',
-      component: () => import('./views/quizPage.vue')
-    },
-    {
-      /*
-      UNPROTECTED VIEW. Users and Guests can:
-      ======> Checkout, or print, their tutorials.
-      ======> Delete, or Cancel All, their tutorials.
-      ==============> LOGGED_IN USERS can proceed to "Save and Share" their timetable.
-      */
-      path: '/checkout',
-      name: 'checkout',
-      component: () => import('./views/checkout.vue'),
-    },
-    {
-      path: '/signin',
-      name: 'signin',
-      component: () => import('./views/signin.vue')
-    },
-    {
-      path: '/join',
-      name: 'join',
-      component: () => import('./views/join.vue')
-    },
-    {
-      /*
-        PROTECTED VIEW.In this View, Users can:
-        ======> Save a timetable and share for others to copy and print(/tt/:timetableID).
-        ======> Add reminders in Google Calender.
-        ======> See clashing tutorials.
-
-      */
-      path: '/tt',
-      name: 'timeTable',
-      component: () => import('./views/checkout.vue'),
-      beforeEnter: (to, from, next) => {
-        if(store.state.authenticated == false) {
-          next(false);
-        } else {
-          next();
-        }
-      }
-    },
-    {
-      /*
-      UNPROTECTED VIEW. In this view, Users and Guests can:
-      ========> Print the ":timetableID".
-      ===============> LOGGED_IN USERS can Add reminders in Google Calender.
-      */
-      path: '/tt/:timetableID',
-      name: 'sharedTimeTable',
-      component: () => import('./views/checkout.vue')
-    },
-    {
-      path: '/*',
-      name: 'error404',
-      component: error404
     }
   ],
   scrollBehaviour (to, from, savedPosition) {
