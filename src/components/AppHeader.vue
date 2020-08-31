@@ -35,7 +35,7 @@ export default {
 }
 .header__logo {
   text-decoration: none;
-  color: rgb(77, 77, 77);
+  color: black;
   font-weight: bold;
   font-family: 'Times New Roman', Times, serif;
   letter-spacing: .1rem;
@@ -93,6 +93,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 99;
 
   flex-direction: column;
   justify-content: flex-end;
