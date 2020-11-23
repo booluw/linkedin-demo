@@ -1,0 +1,20 @@
+html {
+  font-size: 65.2%;
+}
+
+body {
+  font-family: Poppins,sans-serif;
+  padding: 0;
+  margin: 0;
+  font-size: 1.6rem;
+  color: lighten($color-black, 10%);
+  font-weight: normal;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
