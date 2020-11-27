@@ -1,0 +1,160 @@
+.profile {
+  background-color: white;
+  margin: 0 0 1rem;
+
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--column {
+      flex-direction: column;
+    }
+
+    &--top {
+      align-items: flex-start;
+    }
+
+    &--margin {
+      margin: 0 0 5rem 0;
+    }
+
+    &--desktop-spaced {
+      justify-content: flex-start;
+
+      & :nth-child(even) {
+        display: inline-block;
+        margin: 0 2rem 0;
+      }
+    }
+  }
+
+  .--shift {
+    position: absolute;
+    bottom: auto;
+    right: 1rem;
+    margin: 3rem 0 0;
+  }
+
+  .text--faint {
+    margin: 0 2rem;
+  }
+
+  &__bg {
+    background-image: url('bg.png');
+    background-size: cover;
+    height: 20vh;
+  }
+
+  &__base {
+    padding: $padding $padding;
+    position: relative;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    height: 10rem;
+    border: .3rem solid white;
+    position: absolute;
+    top: -6rem;
+    box-shadow: 0 2px 3px rgba($color-black, .2);
+  }
+
+  &__btns {
+    display: flex;
+    align-items: stretch;
+    margin: 1rem 0 0;
+
+    & :nth-child(even) {
+      margin: 0 
+    }
+  }
+  
+  &__rule {
+    background-color: rgba(grey, .4);
+    padding: .125rem 0 0;
+    margin: 1rem 0 0;
+    border: none;
+    outline: none;
+  }
+
+  &__paragraph {
+    padding: 1rem 0 0;
+  }
+
+  .__img {
+    width: 3rem;
+    margin: 0 1rem 0 0;
+  }
+
+  &__more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 1rem 0;
+    border-radius: 0 0 1rem 1rem;
+    border-top: .1rem solid rgba(0,0,0,.2);
+
+    & > * {
+      margin: 0 0 0 .5rem;
+    }
+
+    &:hover {
+      background-color: rgba($color-base, .1);
+    }
+  }
+
+  a {
+    font-weight: 600;
+
+    &:hover {
+      color: darken($color-base, 10);
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .profile {
+    border-radius: 1rem;
+    border: .1rem solid rgba(0,0,0,.2);
+    margin: 0 0 1.7rem;
+
+    .row {
+      margin: 0;
+    }
+
+    &__flex {
+      justify-content: flex-start;
+      margin: 0 0 .3rem;
+
+      &--desktop-spaced {
+        & :nth-child(even) {
+          display: inline-block;
+          margin: 0 1rem;
+        }
+      }
+      
+      &--margin {
+        margin: 0 0 5rem 0;
+      }
+    }
+
+    &__bg {
+      height: 30vh;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    &__avatar {
+      height: 13rem;
+      top: -8rem;
+    }
+
+    &__btns {
+      position: absolute;
+      top: -5rem;
+      right: 2rem;
+      margin: 0 0;
+    }
+  }
+}

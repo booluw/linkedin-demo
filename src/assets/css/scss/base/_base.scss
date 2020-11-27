@@ -1,13 +1,14 @@
 html {
-  font-size: 65.2%;
+  font-size: 62.5%;
 }
 
 body {
-  font-family: Poppins,sans-serif;
+  font-family: sans-serif;
   padding: 0;
   margin: 0;
   font-size: 1.6rem;
   color: lighten($color-black, 10%);
+  background-color: $color-bg;
   font-weight: normal;
 }
 
@@ -17,4 +18,13 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+a {
+  color: $color-base;
+  text-decoration: none;
 }

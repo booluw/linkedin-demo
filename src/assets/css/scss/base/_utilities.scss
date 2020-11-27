@@ -1,0 +1,80 @@
+.text {
+  &--faint, &--mobile-faint {
+    color: rgba(black, .6);
+  }
+
+  &--light {
+    font-weight: normal;
+  }
+
+  &--medium-sized {
+    font-size: 1.5rem;
+  }
+
+  &--v-small {
+    font-size: 1.4rem;
+  }
+
+  &--small-sized, &--small {
+    font-size: 1.5rem;
+  }
+
+  &--mobile-uppercase {
+    text-transform: uppercase;
+  }
+}
+
+.img {
+  &--round {
+    border-radius: 50%;
+  }
+
+  &--small {
+    width: 6rem;
+  }
+
+  &--v-small {
+    width: 3rem;
+    margin: 0 1rem 0 0;
+  }
+
+  &--medium {
+    width: 8rem;
+  }
+}
+
+.m {
+  &-left--small {
+    margin-left: 2rem;
+  }
+
+  &-top--small {
+    margin-top: 1rem;
+  }
+}
+
+.border {
+  &--bottom {
+    padding: 0 0 1.5rem;
+    border-bottom: .1rem solid rgba(grey, .2);
+  }
+}
+
+@media (min-width: 1000px) {
+  .move-up-container {
+    position: relative;
+  }
+  .text {
+    &--mobile-faint {
+      color: inherit;
+    }
+
+    &--medium-sized {
+      font-size: 1.8rem;
+    }
+
+    &--mobile-uppercase {
+      text-transform: none;
+    }
+  }
+}

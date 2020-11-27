@@ -1,0 +1,26 @@
+.input-group {
+  display: flex;
+  justify-content: flex-start;
+  background-color: rgba(lighten($color-grey, 100%), .8);
+  padding: .4rem;
+  border-radius: .3rem;
+
+  &__input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 1.4rem;
+    flex-basis: 90%;
+  }
+
+  &__label {
+    flex-basis: 10%;
+    color: darken(white, 70%);
+  }
+}
+
+@media (min-width: 1000px) {
+  .input-group {
+    background-color: rgba(lighten($color-base, 0%), .1);
+  }
+}

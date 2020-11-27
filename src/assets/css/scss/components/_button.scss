@@ -1,0 +1,57 @@
+.btn {
+  outline: none;
+  border: .1rem solid transparent;
+  box-shadow: 0 0 0 .1rem $color-base;
+  background-color: white;
+  color: $color-base;
+  border-radius: .2rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  .material-icons {
+    font-size: 1.6rem;
+    margin: 0 .4rem 0 0;
+  }
+  
+  &:nth-child(even) {
+    margin: 0 1rem!important;
+  }
+
+  &:hover {
+    background-color: rgba($color-base, .2);
+    border-color: $color-base;
+  }
+
+  &--primary {
+    background-color: $color-base;
+    color: white;
+
+    &:hover {
+      border-color: darken($color-base, 10%);
+      background-color: darken($color-base, 10%);
+    }
+  }
+
+  &--secondary {
+    color: grey;
+    box-shadow: 0 0 0 .1rem grey;
+
+    &:hover {
+      background-color: rgba(grey, .2);
+      border-color: grey;
+    }
+  }
+}
+
+
+@media (min-width: 1000px) {
+  .btn {
+    padding: .7rem 1.5rem;
+    border-radius: 2rem;
+  }
+}
