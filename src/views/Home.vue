@@ -301,7 +301,7 @@
             </div>
           </div>
         </div>
-        <a href="#" class="profile__more-btn text--mobile-uppercase">Show more <i class="material-icons">more_horiz</i></a>
+        <a href="#" class="profile__more-btn text--mobile-uppercase">Show more <i class="material-icons">keyboard_arrow_down</i></a>
       </section>
     </div>
     <div class="col-2 no-mobile">
