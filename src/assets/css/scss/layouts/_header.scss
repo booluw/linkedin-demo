@@ -112,4 +112,36 @@
       border-left: thin solid rgba(black, .1);
     }
   }
+  .sticky-header {
+    display: none;
+    padding: 1rem $padding--desktop;
+    background-color: white;
+    box-shadow: none;
+    border-bottom: thin solid darken($color-bg, 10%);
+    
+    &__details {
+      display: flex;
+      align-items: center;
+    }
+
+    &__text {
+      margin: 0 0 0 1rem;
+    }
+
+    &__btns {
+      display: flex;
+    }
+  }
+
+  section.sticky-header.sticky {
+    display: flex!important;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 5.6rem;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 3px 3px rgba(black, .3);
+  }
 }

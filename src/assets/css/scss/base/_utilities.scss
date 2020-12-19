@@ -51,12 +51,26 @@
   &-top--small {
     margin-top: 1rem;
   }
+
+  &-b--mobile {
+    margin-bottom: 5rem;
+  }
 }
 
 .border {
   &--bottom {
     padding: 0 0 1.5rem;
     border-bottom: .1rem solid rgba(grey, .2);
+  }
+}
+
+.color-black {
+  color: $color-grey;
+  margin: 0 2rem;
+
+  p {
+    opacity: .5;
+    font-weight: normal;
   }
 }
 
@@ -75,6 +89,12 @@
 
     &--mobile-uppercase {
       text-transform: none;
+    }
+  }
+
+  .m {
+    &-b--mobile {
+      margin-bottom: 0;
     }
   }
 }

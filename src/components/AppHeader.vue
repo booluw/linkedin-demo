@@ -46,7 +46,7 @@
       </a>
     </nav>
     <div class="nav--last no-mobile">
-      Hello
+      <i class="material-icons">apps</i>
     </div>
   </header>
 </template>

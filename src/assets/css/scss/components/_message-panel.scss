@@ -1,0 +1,34 @@
+@media (min-width: 1000px) {
+    .message-panel {
+        display: flex!important;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: .7rem;
+        border-radius: .5rem;
+        box-shadow: 0 0 10px rgba(darken($color-bg, 20%), .9);
+
+        position: fixed;
+        bottom: 0;
+        right: 1rem;
+        width: 30%;
+
+        &__img {
+            width: 4rem;
+            border-radius: 50%;
+            margin: 0 1rem 0 0;
+        }
+
+        div:first-child {
+            display: flex;
+            align-items: center;
+            flex-basis: 40%;
+        }
+
+        &__icons {
+            display: flex;
+            justify-content: space-between;
+            flex-basis: 30%;
+        }
+    }
+}

@@ -2,6 +2,12 @@
   &--light {
     font-weight: 500;
   }
+  &--blue {
+    color: $color-base;
+  }
+  &--v-big {
+    font-size: 4rem;
+  }
 }
 
 @media (min-width: 1000px) {

@@ -1,0 +1,52 @@
+.footer {
+    padding: 3rem 0;
+    margin: 3rem $padding--desktop 0;
+    border-top: .2rem solid rgba($color-grey, .2);
+
+    &__flex {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0 0;
+    }
+
+    &__nav a {
+        margin: 0 0 .3rem;
+        padding: .5rem 0;
+        display: block;
+        color: $color-grey;
+        font-weight: bold;
+    
+        &:hover {
+            color: $color-base;
+            text-decoration: none;
+        }
+    }
+
+    &__attribution {
+        margin: 2rem 0 0;
+        font-weight: normal;
+        opacity: .7;
+    }
+
+    .flex-link {
+        display: flex;
+        font-weight: normal;
+
+        div {
+            margin: 0 0 0 1rem;
+        }
+    }
+
+    &__last {
+        font-weight: normal;
+        opacity: .6;
+    }
+
+    .language-input {
+        font-weight: bold;
+        background-color: rgba($color-grey, .7);
+        padding: 1rem .5rem;
+        margin: 1rem 0 0;
+        border-radius: .3rem;
+    }
+}
