@@ -1,29 +1,15 @@
-# tutera
+# LinkedIn Demo
+
+Built with Vue JS and Sass. A live demo can be found at  https://morning-mountain-06004.herokuapp.com.
+
+## Project overview
+
+- Custom Layout grid (containedin scss/layouts/grid)
+- Deployed on heroku
+- Added Continous Deployment and Integration (CD/CI)
+- Worked with Vue JS directives
 
 ## Project setup
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
